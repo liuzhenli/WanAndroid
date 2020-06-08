@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/s_list_item_bg_dark_1"
+    android:padding="@dimen/common_margin_normal">
+
+    <TextView
+        android:id="@+id/tv_article_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color_33"
+        android:textSize="@dimen/txt_size_14"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/iv_article_source"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin_normal"
+        android:src="@android:drawable/ic_menu_share"
+        android:text="分享人:"
+        android:textColor="@color/text_color_99"
+        android:textSize="@dimen/txt_size_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_article_title" />
+
+    <TextView
+        android:id="@+id/tv_article_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="洪阳"
+        android:textColor="@color/text_color_99"
+        android:textSize="@dimen/txt_size_10"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_article_source"
+        app:layout_constraintLeft_toRightOf="@+id/iv_article_source"
+        app:layout_constraintTop_toTopOf="@+id/iv_article_source" />
+
+    <TextView
+        android:id="@+id/tv_article_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_margin_large"
+        android:textColor="@color/text_color_99"
+        android:textSize="@dimen/txt_size_10"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_article_source"
+        app:layout_constraintLeft_toRightOf="@+id/tv_article_author"
+        app:layout_constraintTop_toTopOf="@+id/iv_article_source" />
+
+    <TextView
+        android:id="@+id/tv_article_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common_margin_large"
+        android:textColor="@color/text_color_99"
+        android:textSize="@dimen/txt_size_10"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_article_source"
+        app:layout_constraintLeft_toRightOf="@+id/tv_article_type"
+        app:layout_constraintTop_toTopOf="@+id/iv_article_source" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

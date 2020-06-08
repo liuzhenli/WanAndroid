@@ -1,0 +1,32 @@
+<com.qmuiteam.qmui.widget.QMUIWindowInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/qmui_skin_support_color_background">
+
+    <com.qmuiteam.qmui.widget.webview.QMUIWebViewContainer
+        android:id="@+id/webview_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.qmuiteam.qmui.widget.webview.QMUIWebViewContainer>
+
+
+    <com.qmuiteam.qmui.widget.QMUITopBarLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="2dp"
+            android:minHeight="2dp"
+            android:layout_gravity="bottom"
+            android:progressDrawable="@drawable/web_explorer_progress"/>
+    </com.qmuiteam.qmui.widget.QMUITopBarLayout>
+
+
+</com.qmuiteam.qmui.widget.QMUIWindowInsetLayout>
