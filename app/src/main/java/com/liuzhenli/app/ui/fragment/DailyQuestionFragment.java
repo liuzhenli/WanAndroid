@@ -50,6 +50,7 @@ public class DailyQuestionFragment extends BaseRVFragment<DailyQuestionPresenter
 
     @Override
     public void showDailyQuestion(ArticleListBean data) {
+        mRecyclerView.setRefreshing(false);
         hideDialog();
         if (mAdapter.getCount() > 0 && mPage == 0) {
             DataDiffUtil.diffResult(mAdapter, data.data.datas, new DataDiffUtil.ItemSameCallBack<ArticleBean>() {
@@ -77,6 +78,7 @@ public class DailyQuestionFragment extends BaseRVFragment<DailyQuestionPresenter
 
     @Override
     public void showError(Exception e) {
+        mRecyclerView.setRefreshing(false);
         hideDialog();
     }
 
@@ -96,6 +98,7 @@ public class DailyQuestionFragment extends BaseRVFragment<DailyQuestionPresenter
 
     @Override
     public void complete() {
+        mRecyclerView.setRefreshing(false);
         hideDialog();
     }
 

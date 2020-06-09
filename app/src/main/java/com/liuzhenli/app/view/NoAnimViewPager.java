@@ -10,7 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 /**
  * describe:切换时候取消动画效果
  *
- * @author Liuzhenli on 2020-03-12 11:23
+ * @author Liuzhenli on 2020-06-09 11:23
  */
 public class NoAnimViewPager extends ViewPager {
     public NoAnimViewPager(@NonNull Context context) {
