@@ -3,6 +3,7 @@ package com.liuzhenli.app.network;
 import com.liuzhenli.app.bean.ArticleChapters;
 import com.liuzhenli.app.bean.ArticleListBean;
 import com.liuzhenli.app.bean.NavigationData;
+import com.liuzhenli.app.bean.ProjectTreeBean;
 import com.liuzhenli.app.bean.TopArticleList;
 import com.liuzhenli.app.bean.UserInfo;
 import com.liuzhenli.app.gson.CustomGsonConverterFactory;
@@ -82,5 +83,12 @@ public class Api {
 
     public Observable<ArticleListBean> getDailyQuestion(String page) {
         return service.getDailyQuestion(page);
+    }
+
+    public Observable<ProjectTreeBean> getProjectTree() {
+        return service.getProjectTree();
+    }
+    public Observable<ArticleListBean> getProjects(int page,String cid) {
+        return service.getProjects(page,cid);
     }
 }

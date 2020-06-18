@@ -35,6 +35,10 @@ public class Constant {
         String ARTICLE_WXARTICLE_LIST = "/wxarticle/list/{id}/{page}/json";
         /***导航*/
         String NAVIGATION = "/navi/json";
+        /***项目树*/
+        String PROJECT_TREE = "/project/tree/json";
+        /***项目列表**/
+        String PROJECT_LIST = "/project/list/{page}/json";
     }
 
     public static final int TOKEN_EXPRIED = 10104;

@@ -18,6 +18,7 @@ import com.liuzhenli.app.ui.fragment.ArticleContainerFragment;
 import com.liuzhenli.app.ui.fragment.HomeFragment;
 import com.liuzhenli.app.ui.fragment.MeFragment;
 import com.liuzhenli.app.ui.fragment.NavigationFragment;
+import com.liuzhenli.app.ui.fragment.ProjectTreeFragment;
 import com.liuzhenli.app.ui.fragment.TestFragment;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class MainTabAdapter extends FragmentPagerAdapter {
         tabName = mContext.getResources().getStringArray(R.array.main_tab_names);
         fragments = new ArrayList<>();
         fragments.add(new ArticleContainerFragment());
-        fragments.add(new HomeFragment());
+        fragments.add(ProjectTreeFragment.getInstance());
         fragments.add(NavigationFragment.getInstance());
         fragments.add(MeFragment.getInstance());
     }

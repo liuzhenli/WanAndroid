@@ -3,6 +3,7 @@ package com.liuzhenli.app.network;
 import com.liuzhenli.app.bean.ArticleChapters;
 import com.liuzhenli.app.bean.ArticleListBean;
 import com.liuzhenli.app.bean.NavigationData;
+import com.liuzhenli.app.bean.ProjectTreeBean;
 import com.liuzhenli.app.bean.TopArticleList;
 import com.liuzhenli.app.bean.UserInfo;
 import com.liuzhenli.app.utils.Constant;
@@ -82,4 +83,16 @@ public interface ApiService {
      */
     @GET(Constant.ApiPath.ARTICLE_WEN_DA)
     Observable<ArticleListBean> getDailyQuestion(@Path("page") String page);
+
+    /**
+     * @return 项目分类
+     */
+    @GET(Constant.ApiPath.PROJECT_TREE)
+    Observable<ProjectTreeBean> getProjectTree();
+
+    /**
+     * @return 项目列表
+     */
+    @GET(Constant.ApiPath.PROJECT_LIST)
+    Observable<ArticleListBean> getProjects(@Path("page") int page, @Query("cid") String cid);
 }

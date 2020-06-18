@@ -65,9 +65,7 @@ public class WebViewActivity extends BaseActivity {
         settings.setJavaScriptEnabled(true);
         // mWebView.addJavascriptInterface(new JsReadBook(mHandler), "test");
         //解决没有声音的问题
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            settings.setMediaPlaybackRequiresUserGesture(false);
-        }
+        settings.setMediaPlaybackRequiresUserGesture(false);
         settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         // 开启本地存储，某些功能才能触发（比如网站触摸式菜单）

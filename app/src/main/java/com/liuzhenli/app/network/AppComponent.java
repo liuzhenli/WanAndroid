@@ -9,6 +9,8 @@ import com.liuzhenli.app.ui.fragment.ArticleFragment;
 import com.liuzhenli.app.ui.fragment.DailyQuestionFragment;
 import com.liuzhenli.app.ui.fragment.HomeFragment;
 import com.liuzhenli.app.ui.fragment.NavigationFragment;
+import com.liuzhenli.app.ui.fragment.ProjectFragment;
+import com.liuzhenli.app.ui.fragment.ProjectTreeFragment;
 import com.liuzhenli.app.ui.fragment.UserArticleFragment;
 import com.liuzhenli.app.ui.fragment.UserArticleListFragment;
 
@@ -41,4 +43,8 @@ public interface AppComponent {
     void inject(UserArticleListFragment userArticleListFragment);
 
     void inject(DailyQuestionFragment dailyQuestionFragment);
+
+    void inject(ProjectTreeFragment projectTreeFragment);
+
+    void inject(ProjectFragment projectFragment);
 }
