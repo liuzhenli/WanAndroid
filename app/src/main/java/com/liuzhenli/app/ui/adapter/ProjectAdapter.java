@@ -1,6 +1,7 @@
 package com.liuzhenli.app.ui.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,8 +51,8 @@ public class ProjectAdapter extends RecyclerArrayAdapter<ArticleBean> {
         public void setData(ArticleBean item) {
             super.setData(item);
             ImageUtil.setImage(mContext, item.envelopePic, mIvProjectCover);
-            mTvProjectName.setText(item.title);
-            mTvProjectDes.setText(item.desc);
+            mTvProjectName.setText(Html.fromHtml(item.title));
+            mTvProjectDes.setText(Html.fromHtml(item.desc));
             mTvProjectShareTime.setText(item.niceShareDate);
         }
     }

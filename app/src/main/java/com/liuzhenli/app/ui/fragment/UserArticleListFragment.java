@@ -5,7 +5,7 @@ import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
 import com.liuzhenli.app.network.AppComponent;
-import com.liuzhenli.app.ui.adapter.HomeAdapter;
+import com.liuzhenli.app.ui.adapter.ArticleAdapter;
 import com.liuzhenli.app.ui.contract.UserArticleListContract;
 import com.liuzhenli.app.ui.presenter.UserArticleListPresenter;
 import com.liuzhenli.app.utils.DataDiffUtil;
@@ -35,7 +35,7 @@ public class UserArticleListFragment extends BaseRVFragment<UserArticleListPrese
         if (getArguments() != null) {
             mUserName = getArguments().getString(EXTRA_NAME);
         }
-        initAdapter(HomeAdapter.class, true, true, true);
+        initAdapter(ArticleAdapter.class, true, true, true);
     }
 
     @Override

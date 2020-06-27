@@ -39,8 +39,8 @@ import butterknife.BindView;
  */
 public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter> implements ProjectTreeContract.View {
 
-    public static ProjectFragment getInstance() {
-        ProjectFragment instance = new ProjectFragment();
+    public static ProjectTreeFragment getInstance() {
+        ProjectTreeFragment instance = new ProjectTreeFragment();
         return instance;
     }
 

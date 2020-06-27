@@ -9,7 +9,7 @@ import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.JumpActivity;
-import com.liuzhenli.app.ui.adapter.HomeAdapter;
+import com.liuzhenli.app.ui.adapter.ArticleAdapter;
 import com.liuzhenli.app.ui.contract.ArticleContract;
 import com.liuzhenli.app.ui.presenter.ArticlePresenter;
 
@@ -49,7 +49,7 @@ public class ArticleFragment extends BaseRVFragment<ArticlePresenter, ArticleBea
 
     @Override
     public void configViews() {
-        initAdapter(HomeAdapter.class, true, true, true);
+        initAdapter(ArticleAdapter.class, true, true, true);
     }
 
     @Override

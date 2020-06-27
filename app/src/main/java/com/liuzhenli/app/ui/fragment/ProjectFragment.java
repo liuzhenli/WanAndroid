@@ -7,6 +7,7 @@ import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
 import com.liuzhenli.app.network.AppComponent;
+import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.ui.adapter.ProjectAdapter;
 import com.liuzhenli.app.ui.contract.ProjectContract;
 import com.liuzhenli.app.ui.presenter.ProjectPresenter;
@@ -102,6 +103,8 @@ public class ProjectFragment extends BaseRVFragment<ProjectPresenter, ArticleBea
 
     @Override
     public void onItemClick(int position) {
+        ArticleBean item = mAdapter.getItem(position);
+        startActivity(JumpActivity.createWebExplorerIntent(mContext, item.link, item.title));
 
     }
 

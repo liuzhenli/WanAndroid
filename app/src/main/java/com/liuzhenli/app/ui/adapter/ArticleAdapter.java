@@ -26,9 +26,9 @@ import butterknife.ButterKnife;
  * @author Liuzhenli 848808263@qq.com
  * @since on 2020/5/24 11:07 AM
  */
-public class HomeAdapter extends RecyclerArrayAdapter<ArticleBean> {
+public class ArticleAdapter extends RecyclerArrayAdapter<ArticleBean> {
 
-    public HomeAdapter(Context context) {
+    public ArticleAdapter(Context context) {
         super(context);
     }
 

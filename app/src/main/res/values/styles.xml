@@ -31,6 +31,27 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="ItemTitleStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/common_margin_normal</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/text_color_33</item>
+        <item name="android:textSize">@dimen/txt_size_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ItemDesStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/common_margin_normal</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:textColor">@color/text_color_99</item>
+        <item name="android:textSize">@dimen/txt_size_12</item>
+    </style>
+
     <declare-styleable name="FlowLayout">
         <attr name="horizontal_spacing" format="dimension" />
         <attr name="vertical_spacing" format="dimension" />
