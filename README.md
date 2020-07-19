@@ -16,6 +16,7 @@ WanAndroid, An android developer study App based on Material Design + MVP + RxJa
 * 使用Material Design控件和动画
 * 使用Glide做图片的处理和加载
 * 使用RxPermissions做6.0+动态权限适配
+* 分享功能,调用系统的分享功能,实现文章等内容的分享
 
 ### About me
 

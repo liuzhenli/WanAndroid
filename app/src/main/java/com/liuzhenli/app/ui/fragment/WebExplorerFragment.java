@@ -19,11 +19,11 @@ package com.liuzhenli.app.ui.fragment;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
@@ -40,6 +40,7 @@ import com.qmuiteam.qmui.skin.QMUISkinManager;
 import com.qmuiteam.qmui.util.QMUILangHelper;
 import com.qmuiteam.qmui.util.QMUIResHelper;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
+import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.qmuiteam.qmui.widget.webview.QMUIWebView;
@@ -80,6 +81,8 @@ public class WebExplorerFragment extends BaseFragment {
     private boolean mIsPageFinished = false;
     private boolean mNeedDecodeUrl = false;
 
+    private String[] listItems = new String[]{"分享", "收藏"};
+
     public static WebExplorerFragment getInstance(String url, String title) {
         WebExplorerFragment fragment = new WebExplorerFragment();
         Bundle bundle = new Bundle();
@@ -116,10 +119,14 @@ public class WebExplorerFragment extends BaseFragment {
 
     @Override
     public void configViews() {
-
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_webview_explorer, null);
         initTopbar();
         initWebView();
+        mTopBarLayout.addRightImageButton(R.mipmap.icon_topbar_overflow, R.id.top_bar_right_change_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showBootListDialog(listItems);
+            }
+        });
     }
 
     protected void initTopbar() {
@@ -375,5 +382,41 @@ public class WebExplorerFragment extends BaseFragment {
                     break;
             }
         }
+    }
+
+    private void showBootListDialog(String[] list) {
+        QMUIBottomSheet.BottomListSheetBuilder builder = new QMUIBottomSheet.BottomListSheetBuilder(mContext);
+        builder.setGravityCenter(true)
+                .setAddCancelBtn(false)
+                .setAllowDrag(false)
+                .setNeedRightMark(true)
+                .setCheckedIndex(-1)
+                .setOnSheetItemClickListener((dialog, itemView, position, tag) -> {
+                    dialog.dismiss();
+                    if (position == 0) {
+                        share(mUrl);
+                    } else if (position == 1) {
+                        collect();
+                    }
+
+                });
+        for (int i = 1; i <= list.length; i++) {
+            builder.addItem(list[i - 1]);
+        }
+        builder.build().show();
+    }
+
+    private void collect() {
+        toast("功能待上线");
+    }
+
+    private void share(String url) {
+        Intent share_intent = new Intent();
+        share_intent.setAction(Intent.ACTION_SEND);
+        share_intent.setType("text/plain");
+        share_intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+        share_intent.putExtra(Intent.EXTRA_TEXT, "这篇文章内容不错:" + url);
+        share_intent = Intent.createChooser(share_intent, "分享");
+        startActivity(share_intent);
     }
 }

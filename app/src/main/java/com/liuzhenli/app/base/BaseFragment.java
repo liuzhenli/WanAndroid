@@ -22,6 +22,7 @@ import com.liuzhenli.app.events.DoSomethingEvent;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.base.rxlife.RxFragment;
 import com.liuzhenli.app.ui.activity.HomeActivity;
+import com.liuzhenli.app.utils.ToastUtil;
 import com.liuzhenli.app.view.loading.CustomProgressDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -268,6 +269,10 @@ public abstract class BaseFragment<T1 extends BaseContract.BasePresenter> extend
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void doSomeThing(DoSomethingEvent somethingEvent) {
 
+    }
+
+    protected void toast(String message) {
+        ToastUtil.showCenter(message);
     }
 
 }

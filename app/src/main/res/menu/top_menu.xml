@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/item_share"
+        android:title="分享"
+        app:showAsAction="always"
+        android:visible="true" />
+    <item
+        android:id="@+id/item_save"
+        android:title="收藏" />
+
+</menu>
