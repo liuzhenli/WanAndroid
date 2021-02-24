@@ -1,6 +1,5 @@
 package com.liuzhenli.app.bean;
 
-import com.google.gson.annotations.SerializedName;
 import com.liuzhenli.app.base.BaseBean;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class UserInfo extends BaseBean {
         public int type;
         public String username;
         public List<?> chapterTops;
-        public List<?> collectIds;
+        public List<Integer> collectIds;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.liuzhenli.app.utils;
 
 import android.service.autofill.UserData;
+import android.text.TextUtils;
 
 import com.liuzhenli.app.AppApplication;
 import com.liuzhenli.app.manager.PreferenceManager;
@@ -25,7 +26,7 @@ public class AccountManager {
 
     public boolean isLogin() {
         String[] userNameAndPwd = PreferenceManager.getInstance(AppApplication.getInstance()).getUserNameAndPwd();
-        return userNameAndPwd != null;
+        return userNameAndPwd != null && userNameAndPwd.length == 2 && !TextUtils.isEmpty(userNameAndPwd[0]);
     }
 
     public String getUserName() {

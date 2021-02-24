@@ -4,10 +4,14 @@ import android.widget.TextView;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
+import com.liuzhenli.app.events.LoginSuccessEvent;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.LoginActivity;
 import com.liuzhenli.app.utils.AccountManager;
 import com.liuzhenli.app.utils.ClickUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 
@@ -48,7 +52,14 @@ public class MeFragment extends BaseFragment {
                 LoginActivity.start(mContext);
             }
         });
+        if (AccountManager.getInstance().isLogin()) {
+            mTvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
+        }
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginEvent(LoginSuccessEvent event) {
         if (AccountManager.getInstance().isLogin()) {
             mTvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
         }
