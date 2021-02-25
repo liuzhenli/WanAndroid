@@ -61,6 +61,7 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activity.SettingActivity" />
 
         <meta-data
             android:name="UMENG_APPKEY"

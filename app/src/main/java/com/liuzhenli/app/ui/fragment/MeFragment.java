@@ -7,6 +7,7 @@ import com.liuzhenli.app.base.BaseFragment;
 import com.liuzhenli.app.events.LoginSuccessEvent;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.LoginActivity;
+import com.liuzhenli.app.ui.activity.SettingActivity;
 import com.liuzhenli.app.utils.AccountManager;
 import com.liuzhenli.app.utils.ClickUtils;
 
@@ -29,6 +30,8 @@ public class MeFragment extends BaseFragment {
 
     @BindView(R.id.tv_user_name)
     TextView mTvUserName;
+    @BindView(R.id.tv_me_setting)
+    TextView mTvSetting;
 
     @Override
     public int getLayoutResId() {
@@ -52,6 +55,8 @@ public class MeFragment extends BaseFragment {
                 LoginActivity.start(mContext);
             }
         });
+
+        ClickUtils.click(mTvSetting, o -> SettingActivity.start(mContext));
         if (AccountManager.getInstance().isLogin()) {
             mTvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
         }

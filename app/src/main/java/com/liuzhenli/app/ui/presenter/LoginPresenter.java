@@ -1,22 +1,21 @@
 package com.liuzhenli.app.ui.presenter;
 
 import com.liuzhenli.app.AppApplication;
-import com.liuzhenli.app.base.BaseBean;
 import com.liuzhenli.app.bean.UserInfo;
 import com.liuzhenli.app.manager.PreferenceManager;
 import com.liuzhenli.app.network.Api;
 import com.liuzhenli.app.base.RxPresenter;
 import com.liuzhenli.app.observer.SampleProgressObserver;
 import com.liuzhenli.app.ui.contract.LoginContract;
-import com.liuzhenli.app.utils.AppUtils;
+import com.liuzhenli.app.utils.AccountManager;
 import com.liuzhenli.app.utils.RxUtil;
-import com.liuzhenli.app.utils.SharedPreferencesUtil;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import io.reactivex.observers.DisposableObserver;
 
 /**
  * @author Liuzhenli
@@ -37,15 +36,15 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
         params.put("username", phone);
         params.put("password", password);
 
-        DisposableObserver disposable = RxUtil.subscribe(mApi.getLoginData(params), new SampleProgressObserver<UserInfo>(mView) {
+        addSubscribe(RxUtil.subscribe(mApi.getLoginData(params), new SampleProgressObserver<UserInfo>(mView) {
 
             @Override
-            public void onNext(UserInfo baseBean) {
+            public void onNext(@NotNull UserInfo baseBean) {
                 mView.showLoginResult(baseBean);
                 PreferenceManager.getInstance(AppApplication.getInstance()).saveUserNameAndPwd(phone, password);
+                AccountManager.getInstance().saveUser(baseBean);
             }
 
-        });
-        addSubscribe(disposable);
+        }));
     }
 }

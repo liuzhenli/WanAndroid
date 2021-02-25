@@ -16,7 +16,7 @@
     <include layout="@layout/layout_common_divider" />
 
     <TextView
-        android:id="@+id/tv_me_seting"
+        android:id="@+id/tv_me_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

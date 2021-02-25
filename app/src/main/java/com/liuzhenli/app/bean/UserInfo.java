@@ -2,6 +2,7 @@ package com.liuzhenli.app.bean;
 
 import com.liuzhenli.app.base.BaseBean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class UserInfo extends BaseBean {
      * data : {"admin":false,"chapterTops":[],"collectIds":[],"email":"","icon":"","id":4384,"nickname":"yootoo","password":"","publicName":"yootoo","token":"","type":0,"username":"yootoo"}
      */
 
-    public static class User {
+    public static class User implements Serializable {
         /**
          * admin : false
          * chapterTops : []
