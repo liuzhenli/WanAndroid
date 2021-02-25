@@ -40,11 +40,10 @@ public class LoginPresenter extends RxPresenter<LoginContract.View> implements L
 
             @Override
             public void onNext(@NotNull UserInfo baseBean) {
-                mView.showLoginResult(baseBean);
                 PreferenceManager.getInstance(AppApplication.getInstance()).saveUserNameAndPwd(phone, password);
                 AccountManager.getInstance().saveUser(baseBean);
+                mView.showLoginResult(baseBean);
             }
-
         }));
     }
 }
