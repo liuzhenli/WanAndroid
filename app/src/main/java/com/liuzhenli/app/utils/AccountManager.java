@@ -30,7 +30,8 @@ public class AccountManager {
 
     public boolean isLogin() {
         String[] userNameAndPwd = PreferenceManager.getInstance(AppApplication.getInstance()).getUserNameAndPwd();
-        return userNameAndPwd != null && userNameAndPwd.length == 2 && !TextUtils.isEmpty(userNameAndPwd[0]);
+        return getUserInfo() != null && userNameAndPwd != null
+                && userNameAndPwd.length == 2 && !TextUtils.isEmpty(userNameAndPwd[0]);
     }
 
     public String getUserName() {
@@ -65,5 +66,9 @@ public class AccountManager {
 
     public String getToken() {
         return "";
+    }
+
+    public void logout() {
+        SharedPreferencesUtil.getInstance().remove("user_info");
     }
 }

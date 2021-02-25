@@ -7,19 +7,21 @@
 
     <TextView
         android:id="@+id/tv_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_item_height"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/common_margin_large"
         android:text="未登录"
-        android:textSize="20sp" />
+        android:textSize="@dimen/txt_size_16" />
 
     <include layout="@layout/layout_common_divider" />
 
     <TextView
         android:id="@+id/tv_me_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_item_height"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/common_margin_large"
         android:text="设置"
-        android:textSize="20sp" />
+        android:textSize="@dimen/txt_size_16" />
 </LinearLayout>

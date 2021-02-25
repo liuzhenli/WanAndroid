@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
+import com.liuzhenli.app.events.LoginOutEvent;
 import com.liuzhenli.app.events.LoginSuccessEvent;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.LoginActivity;
@@ -68,5 +69,10 @@ public class MeFragment extends BaseFragment {
         if (AccountManager.getInstance().isLogin()) {
             mTvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLoginEvent(LoginOutEvent event) {
+        mTvUserName.setText("游客");
     }
 }
