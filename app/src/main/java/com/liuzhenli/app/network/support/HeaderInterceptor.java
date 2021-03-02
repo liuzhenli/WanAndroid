@@ -99,7 +99,9 @@ public final class HeaderInterceptor implements Interceptor {
             //添加 header 等
             if (AccountManager.getInstance().isLogin()) {
                 newRequestBuild = newRequestBuild
-                        .addHeader("Cookie", "accessToken=" + AccountManager.getInstance().getToken());
+                        .addHeader("Cookie", "loginUserName=" + AccountManager.getInstance().getUserName());
+                newRequestBuild = newRequestBuild
+                        .addHeader("Cookie", "loginUserPassword=" + AccountManager.getInstance().getUserPassword());
             }
             newRequest = newRequestBuild
                     .addHeader("Connection", "close")

@@ -3,7 +3,6 @@ package com.liuzhenli.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -30,7 +29,7 @@ public class WebViewActivity extends BaseActivity {
     @BindView(R.id.web_view)
     WebView mWebView;
 
-    public static void start(Context context,String url) {
+    public static void start(Context context, String url) {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra(INTENT_ID, url);
         context.startActivity(intent);

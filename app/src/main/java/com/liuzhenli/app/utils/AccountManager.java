@@ -42,6 +42,14 @@ public class AccountManager {
         return "游客";
     }
 
+    public String getUserPassword() {
+        String[] userNameAndPwd = PreferenceManager.getInstance(AppApplication.getInstance()).getUserNameAndPwd();
+        if (userNameAndPwd != null && userNameAndPwd.length == 2) {
+            return userNameAndPwd[1];
+        }
+        return "";
+    }
+
     public void saveUser(UserInfo userInfo) {
         SharedPreferencesUtil.getInstance().putString("user_info", GsonUtils.gson.toJson(userInfo));
     }

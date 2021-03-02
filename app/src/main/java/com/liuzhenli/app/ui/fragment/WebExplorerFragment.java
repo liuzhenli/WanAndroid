@@ -21,6 +21,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -81,7 +82,7 @@ public class WebExplorerFragment extends BaseFragment {
     private boolean mIsPageFinished = false;
     private boolean mNeedDecodeUrl = false;
 
-    private String[] listItems = new String[]{"分享", "收藏"};
+    private String[] listItems = new String[]{"分享", "收藏", "在浏览器打开"};
 
     public static WebExplorerFragment getInstance(String url, String title) {
         WebExplorerFragment fragment = new WebExplorerFragment();
@@ -397,6 +398,8 @@ public class WebExplorerFragment extends BaseFragment {
                         share(mUrl);
                     } else if (position == 1) {
                         collect();
+                    } else if (position == 2) {
+                        showInBrowser();
                     }
 
                 });
@@ -408,6 +411,12 @@ public class WebExplorerFragment extends BaseFragment {
 
     private void collect() {
         toast("功能待上线");
+    }
+
+    private void showInBrowser() {
+        Uri uri = Uri.parse(mUrl);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     private void share(String url) {
