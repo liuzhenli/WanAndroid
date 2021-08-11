@@ -38,7 +38,6 @@ public class UserArticleFragment extends BaseRVFragment<UserArticlePresenter, Ar
     @Override
     public void configViews() {
         initAdapter(ArticleAdapter.class, true, true, true);
-        mPresenter.getUserArticle(mPage);
     }
 
     @Override
@@ -78,4 +77,11 @@ public class UserArticleFragment extends BaseRVFragment<UserArticlePresenter, Ar
         startActivity(JumpActivity.createWebExplorerIntent(mContext, item.link, item.title));
     }
 
+    @Override
+    protected void onFragmentVisibleChange(boolean isVisible) {
+        super.onFragmentVisibleChange(isVisible);
+        if (isVisible && mAdapter.getCount() == 0) {
+            onRefresh();
+        }
+    }
 }

@@ -42,7 +42,6 @@ public class DailyQuestionFragment extends BaseRVFragment<DailyQuestionPresenter
 
     @Override
     public void configViews() {
-        mPresenter.getDailyQuestion(mPage);
     }
 
 

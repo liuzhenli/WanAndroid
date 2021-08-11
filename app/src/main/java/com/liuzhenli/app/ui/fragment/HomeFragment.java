@@ -33,7 +33,7 @@ public class HomeFragment extends BaseRVFragment<HomePagePresenter, ArticleBean>
 
     @Override
     public void initData() {
-        mPresenter.getHomePageData(mPage);
+
     }
 
     @Override
@@ -75,5 +75,13 @@ public class HomeFragment extends BaseRVFragment<HomePagePresenter, ArticleBean>
     public void onItemClick(int position) {
         ArticleBean item = mAdapter.getItem(position);
         startActivity(JumpActivity.createWebExplorerIntent(mContext, item.link, item.title));
+    }
+
+    @Override
+    protected void onFragmentVisibleChange(boolean isVisible) {
+        super.onFragmentVisibleChange(isVisible);
+        if (isVisible && mAdapter.getCount() == 0) {
+            onRefresh();
+        }
     }
 }

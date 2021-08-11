@@ -175,11 +175,7 @@ public class SharedPreferencesUtil {
                 ois = new ObjectInputStream(bais);
                 T t = (T) ois.readObject();
                 return t;
-            } catch (StreamCorruptedException e) {
-                Logger.e(e);
-            } catch (IOException e) {
-                Logger.e(e);
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 Logger.e(e);
             } finally {
                 try {
@@ -215,13 +211,13 @@ public class SharedPreferencesUtil {
 
     public void putArray(String key, String[] values) {
         String regularEx = "#";
-        String str = "";
+        StringBuilder str = new StringBuilder();
         if (values != null && values.length > 0) {
             for (String value : values) {
-                str += value;
-                str += regularEx;
+                str.append(value);
+                str.append(regularEx);
             }
-            editor.putString(key, str);
+            editor.putString(key, str.toString());
             editor.commit();
         }
     }
@@ -245,13 +241,13 @@ public class SharedPreferencesUtil {
 
     public void putArray(String key, int[] values) {
         String regularEx = "#";
-        String str = "";
+        StringBuilder str = new StringBuilder();
         if (values != null && values.length > 0) {
             for (int value : values) {
-                str += value;
-                str += regularEx;
+                str.append(value);
+                str.append(regularEx);
             }
-            editor.putString(key, str);
+            editor.putString(key, str.toString());
             editor.commit();
         }
     }

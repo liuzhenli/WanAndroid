@@ -26,8 +26,6 @@ import butterknife.BindView;
  * @since 2019-07-07 10:25
  */
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
-
-
     @BindView(R.id.et_username)
     EditText mEtUserName;
     @BindView(R.id.et_password)

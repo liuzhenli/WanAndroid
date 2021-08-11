@@ -111,7 +111,7 @@ public class ProjectFragment extends BaseRVFragment<ProjectPresenter, ArticleBea
     @Override
     protected void onFragmentVisibleChange(boolean isVisible) {
         super.onFragmentVisibleChange(isVisible);
-        if (mAdapter.getCount() == 0) {
+        if (isVisible && mAdapter.getCount() == 0) {
             onRefresh();
         }
     }
