@@ -1,9 +1,14 @@
 package com.liuzhenli.app.ui.fragment;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
+import com.liuzhenli.app.databinding.FragmentDailyquestionBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.ui.adapter.ArticleAdapter;
@@ -19,15 +24,17 @@ import com.liuzhenli.app.utils.DataDiffUtil;
  */
 public class DailyQuestionFragment extends BaseRVFragment<DailyQuestionPresenter, ArticleBean> implements DailyQuestionContract.View {
 
+    private FragmentDailyquestionBinding binding;
+
     public static DailyQuestionFragment getInstance() {
         DailyQuestionFragment instance = new DailyQuestionFragment();
         return instance;
     }
 
-
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_dailyquestion;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentDailyquestionBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override

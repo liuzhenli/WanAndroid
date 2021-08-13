@@ -2,11 +2,15 @@ package com.liuzhenli.app.ui.fragment;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
+import com.liuzhenli.app.databinding.FragmentHomeBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.ui.adapter.ArticleAdapter;
@@ -21,6 +25,7 @@ public class ArticleFragment extends BaseRVFragment<ArticlePresenter, ArticleBea
     /***公众号(人物)id*/
     public static final String ID = "id";
     private String mId;
+    private FragmentHomeBinding binding;
 
     public static ArticleFragment getInstance(String id) {
         ArticleFragment instance = new ArticleFragment();
@@ -31,8 +36,9 @@ public class ArticleFragment extends BaseRVFragment<ArticlePresenter, ArticleBea
     }
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_home;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentHomeBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override

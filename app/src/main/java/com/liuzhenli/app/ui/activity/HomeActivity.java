@@ -1,18 +1,17 @@
 package com.liuzhenli.app.ui.activity;
 
 
+import android.view.View;
+
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.google.android.material.tabs.TabLayout;
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseActivity;
+import com.liuzhenli.app.databinding.ActivityHomeBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.adapter.MainTabAdapter;
-import com.liuzhenli.app.view.NoAnimViewPager;
 import com.qmuiteam.qmui.widget.popup.QMUIPopup;
-
-
-import butterknife.BindView;
 
 /**
  * describe: 底部有tab的Activity
@@ -20,12 +19,15 @@ import butterknife.BindView;
  * @author Liuzhenli on 2020-03-12 11:37
  */
 public class HomeActivity extends BaseActivity {
-    @BindView(R.id.view_pager_main)
-    NoAnimViewPager mViewPager;
-    @BindView(R.id.tab_layout_main)
-    TabLayout mTabLayout;
     private int mCurrentPosition;
     private QMUIPopup mGlobalAction;
+    ActivityHomeBinding binding;
+
+    @Override
+    protected View bindContentView() {
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
+    }
 
     @Override
     public int getContextViewId() {
@@ -54,13 +56,13 @@ public class HomeActivity extends BaseActivity {
     @Override
     public void configViews() {
         MainTabAdapter mainTabAdapter = new MainTabAdapter(mContext, getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        mViewPager.setAdapter(mainTabAdapter);
-        mViewPager.setOffscreenPageLimit(5);
-        mTabLayout.setupWithViewPager(mViewPager);
-        for (int i = 0; i < mTabLayout.getTabCount(); i++) {
-            mTabLayout.getTabAt(i).setCustomView(mainTabAdapter.getTabView(i));
+        binding.viewPagerMain.setAdapter(mainTabAdapter);
+        binding.viewPagerMain.setOffscreenPageLimit(5);
+        binding.tabLayoutMain.setupWithViewPager(binding.viewPagerMain);
+        for (int i = 0; i < binding.tabLayoutMain.getTabCount(); i++) {
+            binding.tabLayoutMain.getTabAt(i).setCustomView(mainTabAdapter.getTabView(i));
         }
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        binding.tabLayoutMain.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mCurrentPosition = tab.getPosition();

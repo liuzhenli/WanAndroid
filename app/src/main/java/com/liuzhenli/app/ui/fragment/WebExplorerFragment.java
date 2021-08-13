@@ -25,22 +25,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.ZoomButtonsController;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
+import com.liuzhenli.app.databinding.FragmentWebviewExplorerBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.view.LWebView;
 import com.qmuiteam.qmui.skin.QMUISkinManager;
 import com.qmuiteam.qmui.util.QMUILangHelper;
 import com.qmuiteam.qmui.util.QMUIResHelper;
-import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
@@ -51,8 +52,6 @@ import com.qmuiteam.qmui.widget.webview.QMUIWebViewContainer;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.net.URLDecoder;
-
-import butterknife.BindView;
 
 /**
  * Created by cgspine on 2017/12/4.
@@ -66,13 +65,6 @@ public class WebExplorerFragment extends BaseFragment {
     private final static int PROGRESS_PROCESS = 0;
     private final static int PROGRESS_GONE = 1;
 
-
-    @BindView(R.id.topbar)
-    QMUITopBarLayout mTopBarLayout;
-    @BindView(R.id.webview_container)
-    QMUIWebViewContainer mWebViewContainer;
-    @BindView(R.id.progress_bar)
-    ProgressBar mProgressBar;
     protected LWebView mWebView;
 
 
@@ -82,7 +74,8 @@ public class WebExplorerFragment extends BaseFragment {
     private boolean mIsPageFinished = false;
     private boolean mNeedDecodeUrl = false;
 
-    private String[] listItems = new String[]{"分享", "收藏", "在浏览器打开"};
+    private final String[] listItems = new String[]{"分享", "收藏", "在浏览器打开"};
+    private FragmentWebviewExplorerBinding binding;
 
     public static WebExplorerFragment getInstance(String url, String title) {
         WebExplorerFragment fragment = new WebExplorerFragment();
@@ -94,8 +87,9 @@ public class WebExplorerFragment extends BaseFragment {
     }
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_webview_explorer;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentWebviewExplorerBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override
@@ -122,7 +116,7 @@ public class WebExplorerFragment extends BaseFragment {
     public void configViews() {
         initTopbar();
         initWebView();
-        mTopBarLayout.addRightImageButton(R.mipmap.icon_topbar_overflow, R.id.top_bar_right_change_button).setOnClickListener(new View.OnClickListener() {
+        binding.topbar.addRightImageButton(R.mipmap.icon_topbar_overflow, R.id.top_bar_right_change_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showBootListDialog(listItems);
@@ -131,7 +125,7 @@ public class WebExplorerFragment extends BaseFragment {
     }
 
     protected void initTopbar() {
-        mTopBarLayout.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
+        binding.topbar.addLeftBackImageButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popBackStack();
@@ -143,7 +137,7 @@ public class WebExplorerFragment extends BaseFragment {
     private void updateTitle(String title) {
         if (title != null && !title.equals("")) {
             mTitle = title;
-            mTopBarLayout.setTitle(mTitle);
+            binding.topbar.setTitle(mTitle);
         }
     }
 
@@ -154,17 +148,17 @@ public class WebExplorerFragment extends BaseFragment {
     protected void initWebView() {
         mWebView = new LWebView(getContext());
         boolean needDispatchSafeAreaInset = needDispatchSafeAreaInset();
-        mWebViewContainer.addWebView(mWebView, needDispatchSafeAreaInset);
-        mWebViewContainer.setCustomOnScrollChangeListener(new QMUIWebView.OnScrollChangeListener() {
+        binding.webviewContainer.addWebView(mWebView, needDispatchSafeAreaInset);
+        binding.webviewContainer.setCustomOnScrollChangeListener(new QMUIWebView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(WebView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 onScrollWebContent(scrollX, scrollY, oldScrollX, oldScrollY);
             }
         });
-        FrameLayout.LayoutParams containerLp = (FrameLayout.LayoutParams) mWebViewContainer.getLayoutParams();
-        mWebViewContainer.setFitsSystemWindows(!needDispatchSafeAreaInset);
+        FrameLayout.LayoutParams containerLp = (FrameLayout.LayoutParams) binding.webviewContainer.getLayoutParams();
+        binding.webviewContainer.setFitsSystemWindows(!needDispatchSafeAreaInset);
         containerLp.topMargin = needDispatchSafeAreaInset ? 0 : QMUIResHelper.getAttrDimen(getContext(), R.attr.qmui_topbar_height);
-        mWebViewContainer.setLayoutParams(containerLp);
+        binding.webviewContainer.setLayoutParams(containerLp);
 
         mWebView.setDownloadListener(new DownloadListener() {
             @Override
@@ -205,7 +199,7 @@ public class WebExplorerFragment extends BaseFragment {
         mWebView.setWebViewClient(getWebViewClient());
         mWebView.requestFocus(View.FOCUS_DOWN);
         setZoomControlGone(mWebView);
-        configWebView(mWebViewContainer, mWebView);
+        configWebView(binding.webviewContainer, mWebView);
         mWebView.loadUrl(mUrl);
     }
 
@@ -250,7 +244,7 @@ public class WebExplorerFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mWebViewContainer.destroy();
+        binding.webviewContainer.destroy();
         mWebView = null;
     }
 
@@ -350,16 +344,16 @@ public class WebExplorerFragment extends BaseFragment {
                     mIsPageFinished = false;
                     mDstProgressIndex = msg.arg1;
                     mDuration = msg.arg2;
-                    mProgressBar.setVisibility(View.VISIBLE);
+                    binding.progressBar.setVisibility(View.VISIBLE);
                     if (mAnimator != null && mAnimator.isRunning()) {
                         mAnimator.cancel();
                     }
-                    mAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", mDstProgressIndex);
+                    mAnimator = ObjectAnimator.ofInt(binding.progressBar, "progress", mDstProgressIndex);
                     mAnimator.setDuration(mDuration);
                     mAnimator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            if (mProgressBar.getProgress() == 100) {
+                            if (binding.progressBar.getProgress() == 100) {
                                 sendEmptyMessageDelayed(PROGRESS_GONE, 500);
                             }
                         }
@@ -369,12 +363,12 @@ public class WebExplorerFragment extends BaseFragment {
                 case PROGRESS_GONE:
                     mDstProgressIndex = 0;
                     mDuration = 0;
-                    mProgressBar.setProgress(0);
-                    mProgressBar.setVisibility(View.GONE);
+                    binding.progressBar.setProgress(0);
+                    binding.progressBar.setVisibility(View.GONE);
                     if (mAnimator != null && mAnimator.isRunning()) {
                         mAnimator.cancel();
                     }
-                    mAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", 0);
+                    mAnimator = ObjectAnimator.ofInt(binding.progressBar, "progress", 0);
                     mAnimator.setDuration(0);
                     mAnimator.removeAllListeners();
                     mIsPageFinished = true;

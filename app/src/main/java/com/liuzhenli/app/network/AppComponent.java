@@ -4,6 +4,7 @@ package com.liuzhenli.app.network;
 import com.liuzhenli.app.module.ApiModule;
 import com.liuzhenli.app.module.AppModule;
 import com.liuzhenli.app.ui.activity.LoginActivity;
+import com.liuzhenli.app.ui.activity.RegisterActivity;
 import com.liuzhenli.app.ui.fragment.ArticleContainerFragment;
 import com.liuzhenli.app.ui.fragment.ArticleFragment;
 import com.liuzhenli.app.ui.fragment.DailyQuestionFragment;
@@ -13,6 +14,8 @@ import com.liuzhenli.app.ui.fragment.ProjectFragment;
 import com.liuzhenli.app.ui.fragment.ProjectTreeFragment;
 import com.liuzhenli.app.ui.fragment.UserArticleFragment;
 import com.liuzhenli.app.ui.fragment.UserArticleListFragment;
+
+import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Singleton;
 
@@ -47,4 +50,6 @@ public interface AppComponent {
     void inject(ProjectTreeFragment projectTreeFragment);
 
     void inject(ProjectFragment projectFragment);
+
+    void inject(@NotNull RegisterActivity registerActivity);
 }

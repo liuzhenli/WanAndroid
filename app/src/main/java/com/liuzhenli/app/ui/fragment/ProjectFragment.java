@@ -1,11 +1,15 @@
 package com.liuzhenli.app.ui.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
+import com.liuzhenli.app.databinding.FragmentProjectBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.ui.adapter.ProjectAdapter;
@@ -20,6 +24,9 @@ import com.liuzhenli.app.utils.DataDiffUtil;
  * @since on 2020/6/11 7:29 PM
  */
 public class ProjectFragment extends BaseRVFragment<ProjectPresenter, ArticleBean> implements ProjectContract.View {
+
+    private FragmentProjectBinding binding;
+
     public static ProjectFragment getInstance(int cid) {
         ProjectFragment instance = new ProjectFragment();
         Bundle bundle = new Bundle();
@@ -31,8 +38,9 @@ public class ProjectFragment extends BaseRVFragment<ProjectPresenter, ArticleBea
     private String mCid;
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_project;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentProjectBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override

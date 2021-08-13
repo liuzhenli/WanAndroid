@@ -1,9 +1,14 @@
 package com.liuzhenli.app.ui.fragment;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
+import com.liuzhenli.app.databinding.FragmentUserarticlelistBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.adapter.ArticleAdapter;
 import com.liuzhenli.app.ui.contract.UserArticleListContract;
@@ -19,10 +24,12 @@ import com.liuzhenli.app.utils.DataDiffUtil;
 public class UserArticleListFragment extends BaseRVFragment<UserArticleListPresenter, ArticleBean> implements UserArticleListContract.View {
     public static String EXTRA_NAME = "user_name";
     private String mUserName;
+    private FragmentUserarticlelistBinding binding;
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_userarticlelist;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentUserarticlelistBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override

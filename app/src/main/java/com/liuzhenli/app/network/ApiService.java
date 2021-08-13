@@ -95,4 +95,7 @@ public interface ApiService {
      */
     @GET(Constant.ApiPath.PROJECT_LIST)
     Observable<ArticleListBean> getProjects(@Path("page") int page, @Query("cid") String cid);
+
+    @POST(Constant.ApiPath.USER_REGISTER)
+    Observable<UserInfo> register(Map<String, String> body);
 }

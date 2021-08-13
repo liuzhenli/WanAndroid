@@ -3,6 +3,7 @@ package com.liuzhenli.app.base;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -40,7 +41,7 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContextViewId());
+        setContentView(bindContentView());
         mContext = this;
         //使用ButterKnife框架
         ButterKnife.bind(this);
@@ -73,6 +74,7 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
         QMUIStatusBarHelper.setStatusBarLightMode(this);
 
     }
+    protected abstract View bindContentView();
 
     /**
      * 根部局

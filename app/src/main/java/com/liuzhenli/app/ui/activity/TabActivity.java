@@ -4,9 +4,11 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseTabActivity;
+import com.liuzhenli.app.databinding.ActivityTabBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.fragment.TestFragment;
 
@@ -20,6 +22,12 @@ public class TabActivity extends BaseTabActivity {
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, TabActivity.class));
+    }
+
+    @Override
+    protected View bindContentView() {
+        ActivityTabBinding binding = ActivityTabBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override

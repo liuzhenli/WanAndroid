@@ -2,17 +2,18 @@ package com.liuzhenli.app.ui.activity
 
 import android.content.Context
 import android.content.Intent
-import butterknife.BindView
+import android.view.View
 import com.liuzhenli.app.R
 import com.liuzhenli.app.base.BaseActivity
+import com.liuzhenli.app.databinding.ActSettingBinding
 import com.liuzhenli.app.events.LoginOutEvent
 import com.liuzhenli.app.network.AppComponent
 import com.liuzhenli.app.ui.contract.SettingContract
 import com.liuzhenli.app.ui.presenter.SettingPresenter
 import com.liuzhenli.app.utils.AccountManager
 import com.liuzhenli.app.utils.ClickUtils
-import com.qmuiteam.qmui.layout.QMUIButton
 import org.greenrobot.eventbus.EventBus
+
 
 /**
  * Description:
@@ -21,9 +22,9 @@ import org.greenrobot.eventbus.EventBus
  * Email: 848808263@qq.com
  */
 class SettingActivity : BaseActivity<SettingPresenter?>(), SettingContract.View {
-    @JvmField
-    @BindView(R.id.btn_logout)
-    var mVLogout: QMUIButton? = null
+
+    private var binding: ActSettingBinding? = null
+
     override fun getContextViewId(): Int {
         return R.layout.act_setting
     }
@@ -35,7 +36,7 @@ class SettingActivity : BaseActivity<SettingPresenter?>(), SettingContract.View 
 
     override fun initData() {}
     override fun configViews() {
-        ClickUtils.click(mVLogout) { o: Any? ->
+        ClickUtils.click(binding?.btnLogout) { o: Any? ->
             AccountManager.getInstance().logout()
             EventBus.getDefault().post(LoginOutEvent())
             finish()
@@ -51,5 +52,10 @@ class SettingActivity : BaseActivity<SettingPresenter?>(), SettingContract.View 
             val intent = Intent(context, SettingActivity::class.java)
             context.startActivity(intent)
         }
+    }
+
+    override fun bindContentView(): View {
+        binding = ActSettingBinding.inflate(layoutInflater)
+        return binding!!.root
     }
 }

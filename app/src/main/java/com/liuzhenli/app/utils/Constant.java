@@ -39,6 +39,8 @@ public class Constant {
         String PROJECT_TREE = "/project/tree/json";
         /***项目列表**/
         String PROJECT_LIST = "/project/list/{page}/json";
+        /***用户注册*/
+        String USER_REGISTER = "/user/register";
     }
 
     public static final int TOKEN_EXPRIED = 10104;

@@ -1,14 +1,21 @@
 package com.liuzhenli.app.ui.fragment;
 
-import com.liuzhenli.app.R;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.liuzhenli.app.base.BaseFragment;
+import com.liuzhenli.app.databinding.FragmentTestBinding;
 import com.liuzhenli.app.network.AppComponent;
 
 public class TestFragment extends BaseFragment {
 
+    private FragmentTestBinding binding;
+
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_test;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentTestBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override

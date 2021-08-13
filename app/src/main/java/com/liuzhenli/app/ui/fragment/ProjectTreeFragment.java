@@ -1,6 +1,9 @@
 package com.liuzhenli.app.ui.fragment;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
@@ -12,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
 import com.liuzhenli.app.bean.ProjectTreeBean;
+import com.liuzhenli.app.databinding.FragmentProjecttreeBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.contract.ProjectTreeContract;
 import com.liuzhenli.app.ui.presenter.ProjectTreePresenter;
@@ -39,16 +43,13 @@ import butterknife.BindView;
  */
 public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter> implements ProjectTreeContract.View {
 
+    private FragmentProjecttreeBinding binding;
+
     public static ProjectTreeFragment getInstance() {
         ProjectTreeFragment instance = new ProjectTreeFragment();
         return instance;
     }
 
-
-    @BindView(R.id.magic_indicator)
-    MagicIndicator mMagicIndicator;
-    @BindView(R.id.tab_vp)
-    ViewPager mTabVp;
     private FragmentPagerAdapter fragmentPagerAdapter;
     private CommonNavigatorAdapter mCommonNavigationAdapter;
     /***子Fragment容器**/
@@ -59,8 +60,9 @@ public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter> impl
     private List<String> mTitleList = new ArrayList<>();
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_projecttree;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentProjecttreeBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override
@@ -93,11 +95,11 @@ public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter> impl
             }
         };
 
-        mTabVp.setOffscreenPageLimit(20);
-        mTabVp.setAdapter(fragmentPagerAdapter);
+        binding.tabVp.setOffscreenPageLimit(20);
+        binding.tabVp.setAdapter(fragmentPagerAdapter);
 
 
-        mMagicIndicator.setBackgroundColor(getResources().getColor(R.color.white));
+        binding.magicIndicator.setBackgroundColor(getResources().getColor(R.color.white));
         CommonNavigator commonNavigator7 = new CommonNavigator(mContext);
         //这个控制左右滑动的时候,选中文字的位置,0.5表示在中间
         commonNavigator7.setScrollPivotX(0.5f);
@@ -114,7 +116,7 @@ public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter> impl
                 simplePagerTitleView.setTextSize(16);
                 simplePagerTitleView.setNormalColor(getResources().getColor(R.color.text_color_99));
                 simplePagerTitleView.setSelectedColor(getResources().getColor(R.color.main));
-                simplePagerTitleView.setOnClickListener(v -> mTabVp.setCurrentItem(index));
+                simplePagerTitleView.setOnClickListener(v -> binding.tabVp.setCurrentItem(index));
                 return simplePagerTitleView;
             }
 
@@ -132,8 +134,8 @@ public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter> impl
             }
         };
         commonNavigator7.setAdapter(mCommonNavigationAdapter);
-        mMagicIndicator.setNavigator(commonNavigator7);
-        ViewPagerHelper.bind(mMagicIndicator, mTabVp);
+        binding.magicIndicator.setNavigator(commonNavigator7);
+        ViewPagerHelper.bind(binding.magicIndicator, binding.tabVp);
     }
 
     @Override

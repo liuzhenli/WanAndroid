@@ -2,11 +2,11 @@ package com.liuzhenli.app.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.View;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.bean.UserInfo;
+import com.liuzhenli.app.databinding.ActivityLoginBinding;
 import com.liuzhenli.app.events.LoginSuccessEvent;
 import com.liuzhenli.app.manager.PreferenceManager;
 import com.liuzhenli.app.network.AppComponent;
@@ -19,22 +19,22 @@ import com.liuzhenli.app.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
-import butterknife.BindView;
 
 /**
  * @author Liuzhenli
  * @since 2019-07-07 10:25
  */
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
-    @BindView(R.id.et_username)
-    EditText mEtUserName;
-    @BindView(R.id.et_password)
-    EditText mEtPassword;
-    @BindView(R.id.tv_login)
-    TextView login;
+    private ActivityLoginBinding binding;
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, LoginActivity.class));
+    }
+
+    @Override
+    protected View bindContentView() {
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -59,12 +59,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void configViews() {
-        ClickUtils.click(login, o -> login());
+        ClickUtils.click(binding.tvLogin, o -> login());
 
         String[] userNameAndPwd = PreferenceManager.getInstance(this).getUserNameAndPwd();
         if (userNameAndPwd != null && userNameAndPwd.length == 2) {
-            mEtUserName.setText(userNameAndPwd[0]);
-            mEtPassword.setText(userNameAndPwd[1]);
+            binding.etUsername.setText(userNameAndPwd[0]);
+            binding.etPassword.setText(userNameAndPwd[1]);
         }
     }
 
@@ -97,6 +97,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     public void login() {
         showDialog();
-        mPresenter.login(mEtUserName.getText().toString(), mEtPassword.getText().toString());
+        mPresenter.login(binding.etUsername.getText().toString(), binding.etPassword.getText().toString());
     }
 }

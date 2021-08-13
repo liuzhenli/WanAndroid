@@ -1,9 +1,11 @@
 package com.liuzhenli.app.ui.fragment;
 
-import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
+import com.liuzhenli.app.databinding.FragmentMeBinding;
 import com.liuzhenli.app.events.LoginOutEvent;
 import com.liuzhenli.app.events.LoginSuccessEvent;
 import com.liuzhenli.app.network.AppComponent;
@@ -15,8 +17,6 @@ import com.liuzhenli.app.utils.ClickUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import butterknife.BindView;
-
 /**
  * describe:
  *
@@ -25,18 +25,16 @@ import butterknife.BindView;
  */
 public class MeFragment extends BaseFragment {
 
+    private FragmentMeBinding binding;
+
     public static MeFragment getInstance() {
         return new MeFragment();
     }
 
-    @BindView(R.id.tv_user_name)
-    TextView mTvUserName;
-    @BindView(R.id.tv_me_setting)
-    TextView mTvSetting;
-
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_me;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentMeBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override
@@ -51,15 +49,15 @@ public class MeFragment extends BaseFragment {
 
     @Override
     public void configViews() {
-        ClickUtils.click(mTvUserName, o -> {
+        ClickUtils.click(binding.tvUserName, o -> {
             if (!AccountManager.getInstance().isLogin()) {
                 LoginActivity.start(mContext);
             }
         });
 
-        ClickUtils.click(mTvSetting, o -> SettingActivity.start(mContext));
+        ClickUtils.click(binding.tvMeSetting, o -> SettingActivity.start(mContext));
         if (AccountManager.getInstance().isLogin()) {
-            mTvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
+            binding.tvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
         }
 
     }
@@ -67,12 +65,12 @@ public class MeFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginEvent(LoginSuccessEvent event) {
         if (AccountManager.getInstance().isLogin()) {
-            mTvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
+            binding.tvUserName.setText(String.format("%s ,欢迎您!", AccountManager.getInstance().getUserName()));
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginEvent(LoginOutEvent event) {
-        mTvUserName.setText("游客");
+        binding.tvUserName.setText("游客");
     }
 }

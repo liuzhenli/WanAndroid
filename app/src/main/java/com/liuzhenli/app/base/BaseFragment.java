@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
@@ -28,6 +29,7 @@ import com.liuzhenli.app.view.loading.CustomProgressDialog;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
@@ -52,19 +54,18 @@ public abstract class BaseFragment<T1 extends BaseContract.BasePresenter> extend
     @Inject
     protected T1 mPresenter;
 
-    /**
-     * return 根部局的文件Id R.layout.xxx
-     */
-    public abstract @LayoutRes
-    int getLayoutResId();
-
+    public abstract View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent);
 
     protected abstract void setupActivityComponent(AppComponent appComponent);
 
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        parentView = bindContentView(getLayoutInflater(), container, false);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
-    protected View onCreateView() {
-        parentView = LayoutInflater.from(getActivity()).inflate(getLayoutResId(), null);
+    public View onCreateView() {
         activity = getSupportActivity();
         mContext = activity;
         TAG = activity.getClass().getName();
@@ -74,7 +75,6 @@ public abstract class BaseFragment<T1 extends BaseContract.BasePresenter> extend
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-
         initVariable();
         EventBus.getDefault().register(this);
         super.onCreate(savedInstanceState);

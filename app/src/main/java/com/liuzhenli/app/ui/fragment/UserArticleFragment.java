@@ -1,10 +1,15 @@
 package com.liuzhenli.app.ui.fragment;
 
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
+import com.liuzhenli.app.databinding.FragmentHomeBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.ui.adapter.ArticleAdapter;
@@ -16,14 +21,17 @@ import com.liuzhenli.app.ui.presenter.UserArticlePresenter;
  */
 public class UserArticleFragment extends BaseRVFragment<UserArticlePresenter, ArticleBean> implements UserArticleContract.View {
 
+    private FragmentHomeBinding binding;
+
     public static UserArticleFragment getInstance() {
         UserArticleFragment instance = new UserArticleFragment();
         return instance;
     }
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_home;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentHomeBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override

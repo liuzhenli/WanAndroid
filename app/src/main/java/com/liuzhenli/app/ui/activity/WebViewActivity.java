@@ -3,12 +3,14 @@ package com.liuzhenli.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseActivity;
+import com.liuzhenli.app.databinding.ActWebviewBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.view.webview.ZLWebChromeClient;
 import com.liuzhenli.app.view.webview.ZLWebViewClient;
@@ -26,13 +28,19 @@ public class WebViewActivity extends BaseActivity {
     public ValueCallback<Uri[]> mUploadMessageForAndroid5;
     public ValueCallback<Uri> mUploadMessage;
     private String mUrl;
-    @BindView(R.id.web_view)
-    WebView mWebView;
+
+    private ActWebviewBinding binding;
 
     public static void start(Context context, String url) {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra(INTENT_ID, url);
         context.startActivity(intent);
+    }
+
+    @Override
+    protected View bindContentView() {
+        binding = ActWebviewBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
     }
 
     @Override
@@ -58,9 +66,9 @@ public class WebViewActivity extends BaseActivity {
     @Override
     public void configViews() {
         mUrl = getIntent().getStringExtra(INTENT_ID);
-        mWebView.setWebChromeClient(new ZLWebChromeClient(mContext));
-        mWebView.setWebViewClient(new ZLWebViewClient(mContext));
-        WebSettings settings = mWebView.getSettings();
+        binding.webView.setWebChromeClient(new ZLWebChromeClient(mContext));
+        binding.webView.setWebViewClient(new ZLWebViewClient(mContext));
+        WebSettings settings = binding.webView.getSettings();
         settings.setJavaScriptEnabled(true);
         // mWebView.addJavascriptInterface(new JsReadBook(mHandler), "test");
         //解决没有声音的问题
@@ -81,7 +89,7 @@ public class WebViewActivity extends BaseActivity {
         settings.setAppCacheEnabled(true);
         // 设置可以访问文件
         settings.setAllowFileAccess(true);
-        mWebView.loadUrl(mUrl);
+        binding.webView.loadUrl(mUrl);
     }
 
     public void setRefresh(boolean b) {

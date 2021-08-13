@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_toolbar" />
+
+    <EditText
+        android:id="@+id/etUserName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_item_height"
+        android:layout_marginHorizontal="50dp"
+        android:hint="请输入用户名" />
+
+    <EditText
+        android:inputType="textPassword"
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_item_height"
+        android:layout_marginHorizontal="50dp"
+        android:hint="请输入密码" />
+
+    <EditText
+        android:id="@+id/etRePassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/all_item_height"
+        android:layout_marginHorizontal="50dp"
+        android:hint="请再输入密码" />
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:layout_width="200dp"
+        android:layout_height="@dimen/all_item_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/common_margin_large"
+        android:text="注册" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

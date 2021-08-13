@@ -91,4 +91,8 @@ public class Api {
     public Observable<ArticleListBean> getProjects(int page,String cid) {
         return service.getProjects(page,cid);
     }
+
+    public Observable<UserInfo> register(Map<String,String> body){
+        return service.register(body);
+    }
 }

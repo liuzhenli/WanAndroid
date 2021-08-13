@@ -1,7 +1,12 @@
 package com.liuzhenli.app.ui.fragment;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
+import com.liuzhenli.app.databinding.FragmentAboutBinding;
 import com.liuzhenli.app.network.AppComponent;
 
 /**
@@ -12,14 +17,17 @@ import com.liuzhenli.app.network.AppComponent;
  */
 public class AboutFragment extends BaseFragment {
 
+    private FragmentAboutBinding binding;
+
     public static AboutFragment getInstance() {
         AboutFragment instance = new AboutFragment();
         return instance;
     }
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_about;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentAboutBinding.inflate(getLayoutInflater(), container, attachParent);
+        return binding.getRoot();
     }
 
     @Override
@@ -36,4 +44,5 @@ public class AboutFragment extends BaseFragment {
     public void configViews() {
 
     }
+
 }

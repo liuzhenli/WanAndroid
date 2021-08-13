@@ -1,5 +1,7 @@
 package com.liuzhenli.app.ui.presenter;
 
+import android.util.ArrayMap;
+
 import com.liuzhenli.app.base.RxPresenter;
 import com.liuzhenli.app.network.Api;
 import com.liuzhenli.app.ui.contract.SettingContract;
@@ -15,6 +17,9 @@ public class SettingPresenter extends RxPresenter<SettingContract.View> implemen
 
     public SettingPresenter(Api api) {
         this.mApi = api;
+        ArrayMap<String, String> stringStringArrayMap = new ArrayMap<>();
     }
+
+
 
 }

@@ -2,21 +2,26 @@ package com.liuzhenli.app.ui.activity;
 
 
 import android.content.Intent;
+import android.view.View;
 
 import com.liuzhenli.app.R;
+import com.liuzhenli.app.databinding.ActivitySplashBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.base.BaseActivity;
-import com.liuzhenli.app.view.CountDownView;
-
-import butterknife.BindView;
 
 /**
  * @author Liuzhenli
  * @since 2019-07-07 08:54
  */
 public class SplashActivity extends BaseActivity {
-    @BindView(R.id.countdown_view)
-    CountDownView mCountDownView;
+
+    private ActivitySplashBinding binding;
+
+    @Override
+    protected View bindContentView() {
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
+        return binding.getRoot();
+    }
 
     @Override
     public int getContextViewId() {
@@ -39,9 +44,9 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     public void configViews() {
-        mCountDownView.startProgress(500);
-        mCountDownView.setOnClickListener(v -> {
-            mCountDownView.setHasClickClip(true);
+        binding.countdownView.startProgress(500);
+        binding.countdownView.setOnClickListener(v -> {
+            binding.countdownView.setHasClickClip(true);
             SplashActivity.this.startActivity(new Intent(SplashActivity.this, HomeActivity.class));
             SplashActivity.this.finish();
         });

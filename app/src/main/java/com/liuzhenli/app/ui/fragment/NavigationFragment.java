@@ -1,14 +1,16 @@
 package com.liuzhenli.app.ui.fragment;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.internal.FlowLayout;
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
 import com.liuzhenli.app.bean.NavigationData;
+import com.liuzhenli.app.databinding.FragmentNavigationBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.ui.adapter.NavigationAdapter;
@@ -19,7 +21,6 @@ import com.liuzhenli.app.view.recyclerview.adapter.RecyclerArrayAdapter;
 
 import java.util.List;
 
-import butterknife.BindView;
 
 /**
  * describe:
@@ -28,21 +29,20 @@ import butterknife.BindView;
  * @since on 2020/6/2 9:01 PM
  */
 public class NavigationFragment extends BaseFragment<NavigationPresenter> implements NavigationContract.View {
-    @BindView(R.id.rv_home_navigation)
-    RecyclerView mRvHomeNavigation;
-    @BindView(R.id.fg_navigation_container)
-    FlowLayout mFgNavigationContainer;
+
+
     private NavigationAdapter leftAdapter;
+    private FragmentNavigationBinding binding;
 
     public static NavigationFragment getInstance() {
         NavigationFragment instance = new NavigationFragment();
         return instance;
     }
 
-
     @Override
-    public int getLayoutResId() {
-        return R.layout.fragment_navigation;
+    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
+        binding = FragmentNavigationBinding.inflate(inflater, container, attachParent);
+        return binding.getRoot();
     }
 
     @Override
@@ -57,9 +57,9 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
 
     @Override
     public void configViews() {
-        mRvHomeNavigation.setLayoutManager(new LinearLayoutManager(mContext));
+        binding.rvHomeNavigation.setLayoutManager(new LinearLayoutManager(mContext));
         leftAdapter = new NavigationAdapter(mContext);
-        mRvHomeNavigation.setAdapter(leftAdapter);
+        binding.rvHomeNavigation.setAdapter(leftAdapter);
         leftAdapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -89,7 +89,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
 
     private void changeData(int position) {
         List<NavigationData.DataBean> data = leftAdapter.getAllData();
-        mFgNavigationContainer.removeAllViews();
+        binding.fgNavigationContainer.removeAllViews();
         for (NavigationData.DataBean.ArticlesBean item : data.get(position).articles) {
             TextView tv = new TextView(mContext);
             tv.setText(item.title);
@@ -97,7 +97,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
             tv.setPadding(DensityUtil.dip2px(mContext, 12), DensityUtil.dip2px(mContext, 6), DensityUtil.dip2px(mContext, 12), DensityUtil.dip2px(mContext, 6));
             tv.setBackgroundResource(R.drawable.selector_bg_gray_radius);
             tv.setOnClickListener(v -> startActivity(JumpActivity.createWebExplorerIntent(mContext, item.link, item.title)));
-            mFgNavigationContainer.addView(tv);
+            binding.fgNavigationContainer.addView(tv);
         }
         for (int i = 0; i < leftAdapter.getAllData().size(); i++) {
             if (position == i) {
