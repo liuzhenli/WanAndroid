@@ -1,13 +1,14 @@
 package com.liuzhenli.app.ui.activity;
 
 
-import android.view.View;
+import android.view.LayoutInflater;
 
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.google.android.material.tabs.TabLayout;
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseActivity;
+import com.liuzhenli.app.base.BaseContract;
 import com.liuzhenli.app.databinding.ActivityHomeBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.ui.adapter.MainTabAdapter;
@@ -18,15 +19,14 @@ import com.qmuiteam.qmui.widget.popup.QMUIPopup;
  *
  * @author Liuzhenli on 2020-03-12 11:37
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity<BaseContract.BasePresenter, ActivityHomeBinding> {
     private int mCurrentPosition;
     private QMUIPopup mGlobalAction;
-    ActivityHomeBinding binding;
+
 
     @Override
-    protected View bindContentView() {
-        binding = ActivityHomeBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
+    protected ActivityHomeBinding inflateView(LayoutInflater inflater) {
+        return ActivityHomeBinding.inflate(inflater);
     }
 
     @Override

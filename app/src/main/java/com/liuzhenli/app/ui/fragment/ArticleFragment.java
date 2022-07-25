@@ -3,10 +3,7 @@ package com.liuzhenli.app.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
@@ -20,12 +17,11 @@ import com.liuzhenli.app.ui.presenter.ArticlePresenter;
 /**
  * @author liuzhenli
  */
-public class ArticleFragment extends BaseRVFragment<ArticlePresenter, ArticleBean> implements ArticleContract.View {
+public class ArticleFragment extends BaseRVFragment<ArticlePresenter, ArticleBean,FragmentHomeBinding> implements ArticleContract.View {
 
     /***公众号(人物)id*/
     public static final String ID = "id";
     private String mId;
-    private FragmentHomeBinding binding;
 
     public static ArticleFragment getInstance(String id) {
         ArticleFragment instance = new ArticleFragment();
@@ -36,9 +32,8 @@ public class ArticleFragment extends BaseRVFragment<ArticlePresenter, ArticleBea
     }
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentHomeBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentHomeBinding inflateView(LayoutInflater inflater) {
+        return FragmentHomeBinding.inflate(inflater);
     }
 
     @Override

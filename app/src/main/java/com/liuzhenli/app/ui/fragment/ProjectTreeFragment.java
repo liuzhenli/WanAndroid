@@ -38,28 +38,25 @@ import java.util.List;
  * @author Liuzhenli 848808263@qq.com
  * @since on 2020/6/11 7:29 PM
  */
-public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter> implements ProjectTreeContract.View {
+public class ProjectTreeFragment extends BaseFragment<ProjectTreePresenter, FragmentProjecttreeBinding> implements ProjectTreeContract.View {
 
-    private FragmentProjecttreeBinding binding;
 
     public static ProjectTreeFragment getInstance() {
-        ProjectTreeFragment instance = new ProjectTreeFragment();
-        return instance;
+        return new ProjectTreeFragment();
     }
 
     private FragmentPagerAdapter fragmentPagerAdapter;
     private CommonNavigatorAdapter mCommonNavigationAdapter;
     /***子Fragment容器**/
-    private List<BaseFragment> mFragmentList = new ArrayList<>();
+    private final List<BaseFragment> mFragmentList = new ArrayList<>();
     /**
      * 页面标题
      */
-    private List<String> mTitleList = new ArrayList<>();
+    private final List<String> mTitleList = new ArrayList<>();
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentProjecttreeBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentProjecttreeBinding inflateView(LayoutInflater inflater) {
+        return FragmentProjecttreeBinding.inflate(inflater);
     }
 
     @Override

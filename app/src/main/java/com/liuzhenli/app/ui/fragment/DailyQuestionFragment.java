@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
@@ -22,19 +21,15 @@ import com.liuzhenli.app.utils.DataDiffUtil;
  * @author Liuzhenli 848808263@qq.com
  * @since on 2020/6/7 4:24 PM
  */
-public class DailyQuestionFragment extends BaseRVFragment<DailyQuestionPresenter, ArticleBean> implements DailyQuestionContract.View {
-
-    private FragmentDailyquestionBinding binding;
+public class DailyQuestionFragment extends BaseRVFragment<DailyQuestionPresenter, ArticleBean, FragmentDailyquestionBinding> implements DailyQuestionContract.View {
 
     public static DailyQuestionFragment getInstance() {
-        DailyQuestionFragment instance = new DailyQuestionFragment();
-        return instance;
+        return new DailyQuestionFragment();
     }
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentDailyquestionBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentDailyquestionBinding inflateView(LayoutInflater inflater) {
+        return FragmentDailyquestionBinding.inflate(inflater);
     }
 
     @Override

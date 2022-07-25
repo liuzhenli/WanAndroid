@@ -2,10 +2,7 @@ package com.liuzhenli.app.ui.fragment;
 
 
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
@@ -19,19 +16,15 @@ import com.liuzhenli.app.ui.presenter.UserArticlePresenter;
 /**
  * @author liuzhenli
  */
-public class UserArticleFragment extends BaseRVFragment<UserArticlePresenter, ArticleBean> implements UserArticleContract.View {
-
-    private FragmentHomeBinding binding;
+public class UserArticleFragment extends BaseRVFragment<UserArticlePresenter, ArticleBean, FragmentHomeBinding> implements UserArticleContract.View {
 
     public static UserArticleFragment getInstance() {
-        UserArticleFragment instance = new UserArticleFragment();
-        return instance;
+        return new UserArticleFragment();
     }
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentHomeBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentHomeBinding inflateView(LayoutInflater inflater) {
+        return FragmentHomeBinding.inflate(inflater);
     }
 
     @Override

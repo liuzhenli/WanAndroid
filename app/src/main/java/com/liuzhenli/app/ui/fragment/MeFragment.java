@@ -1,9 +1,8 @@
 package com.liuzhenli.app.ui.fragment;
 
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
+import com.liuzhenli.app.base.BaseContract;
 import com.liuzhenli.app.base.BaseFragment;
 import com.liuzhenli.app.databinding.FragmentMeBinding;
 import com.liuzhenli.app.events.LoginOutEvent;
@@ -23,18 +22,16 @@ import org.greenrobot.eventbus.ThreadMode;
  * @author Liuzhenli 848808263@qq.com
  * @since on 2020/5/25 10:45 PM
  */
-public class MeFragment extends BaseFragment {
+public class MeFragment extends BaseFragment<BaseContract.BasePresenter, FragmentMeBinding> {
 
-    private FragmentMeBinding binding;
 
     public static MeFragment getInstance() {
         return new MeFragment();
     }
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentMeBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentMeBinding inflateView(LayoutInflater inflater) {
+        return FragmentMeBinding.inflate(inflater);
     }
 
     @Override

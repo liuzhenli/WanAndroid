@@ -2,25 +2,23 @@ package com.liuzhenli.app.ui.activity;
 
 
 import android.content.Intent;
-import android.view.View;
+import android.view.LayoutInflater;
 
 import com.liuzhenli.app.R;
+import com.liuzhenli.app.base.BaseActivity;
+import com.liuzhenli.app.base.BaseContract;
 import com.liuzhenli.app.databinding.ActivitySplashBinding;
 import com.liuzhenli.app.network.AppComponent;
-import com.liuzhenli.app.base.BaseActivity;
 
 /**
  * @author Liuzhenli
  * @since 2019-07-07 08:54
  */
-public class SplashActivity extends BaseActivity {
-
-    private ActivitySplashBinding binding;
+public class SplashActivity extends BaseActivity<BaseContract.BasePresenter,ActivitySplashBinding> {
 
     @Override
-    protected View bindContentView() {
-        binding = ActivitySplashBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
+    protected ActivitySplashBinding inflateView(LayoutInflater inflater) {
+        return ActivitySplashBinding.inflate(inflater);
     }
 
     @Override

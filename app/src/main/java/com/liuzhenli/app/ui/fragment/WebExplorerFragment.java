@@ -27,7 +27,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -35,6 +34,7 @@ import android.widget.FrameLayout;
 import android.widget.ZoomButtonsController;
 
 import com.liuzhenli.app.R;
+import com.liuzhenli.app.base.BaseContract;
 import com.liuzhenli.app.base.BaseFragment;
 import com.liuzhenli.app.databinding.FragmentWebviewExplorerBinding;
 import com.liuzhenli.app.network.AppComponent;
@@ -57,7 +57,7 @@ import java.net.URLDecoder;
  * Created by cgspine on 2017/12/4.
  */
 
-public class WebExplorerFragment extends BaseFragment {
+public class WebExplorerFragment extends BaseFragment<BaseContract.BasePresenter, FragmentWebviewExplorerBinding> {
     public static final String EXTRA_URL = "EXTRA_URL";
     public static final String EXTRA_TITLE = "EXTRA_TITLE";
     public static final String EXTRA_NEED_DECODE = "EXTRA_NEED_DECODE";
@@ -75,7 +75,6 @@ public class WebExplorerFragment extends BaseFragment {
     private boolean mNeedDecodeUrl = false;
 
     private final String[] listItems = new String[]{"分享", "收藏", "在浏览器打开"};
-    private FragmentWebviewExplorerBinding binding;
 
     public static WebExplorerFragment getInstance(String url, String title) {
         WebExplorerFragment fragment = new WebExplorerFragment();
@@ -86,10 +85,10 @@ public class WebExplorerFragment extends BaseFragment {
         return fragment;
     }
 
+
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentWebviewExplorerBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentWebviewExplorerBinding inflateView(LayoutInflater inflater) {
+        return FragmentWebviewExplorerBinding.inflate(inflater);
     }
 
     @Override

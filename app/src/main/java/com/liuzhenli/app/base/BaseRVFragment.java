@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.utils.NetworkUtils;
@@ -22,7 +23,7 @@ import java.lang.reflect.Constructor;
  * @author Liuzhenli
  * @since 2019-07-07 07:55
  */
-public abstract class BaseRVFragment<T1 extends BaseContract.BasePresenter, T2> extends BaseFragment<T1> implements OnLoadMoreListener, OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
+public abstract class BaseRVFragment<T1 extends BaseContract.BasePresenter, T2, VB extends ViewBinding> extends BaseFragment<T1,VB> implements OnLoadMoreListener, OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
     protected
     EasyRecyclerView mRecyclerView;
     protected RecyclerArrayAdapter<T2> mAdapter;

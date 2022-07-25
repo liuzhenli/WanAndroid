@@ -1,17 +1,11 @@
 package com.liuzhenli.app.ui.presenter;
 
-import com.liuzhenli.app.AppApplication;
 import com.liuzhenli.app.base.RxPresenter;
 import com.liuzhenli.app.bean.NavigationData;
-import com.liuzhenli.app.bean.UserInfo;
-import com.liuzhenli.app.manager.PreferenceManager;
 import com.liuzhenli.app.network.Api;
 import com.liuzhenli.app.observer.SampleProgressObserver;
-import com.liuzhenli.app.ui.contract.LoginContract;
 import com.liuzhenli.app.ui.contract.NavigationContract;
 import com.liuzhenli.app.utils.RxUtil;
-
-import java.util.HashMap;
 
 import javax.inject.Inject;
 

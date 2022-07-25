@@ -3,13 +3,13 @@ package com.liuzhenli.app.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseActivity;
+import com.liuzhenli.app.base.BaseContract;
 import com.liuzhenli.app.databinding.ActWebviewBinding;
 import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.view.webview.ZLWebChromeClient;
@@ -21,13 +21,11 @@ import com.liuzhenli.app.view.webview.ZLWebViewClient;
  * @author Liuzhenli on 2019-08-17 19:27
  * @since 1.0.0
  */
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends BaseActivity<BaseContract.BasePresenter, ActWebviewBinding> {
     public static final String INTENT_ID = "url";
     public ValueCallback<Uri[]> mUploadMessageForAndroid5;
     public ValueCallback<Uri> mUploadMessage;
     private String mUrl;
-
-    private ActWebviewBinding binding;
 
     public static void start(Context context, String url) {
         Intent intent = new Intent(context, WebViewActivity.class);
@@ -36,9 +34,8 @@ public class WebViewActivity extends BaseActivity {
     }
 
     @Override
-    protected View bindContentView() {
-        binding = ActWebviewBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
+    protected ActWebviewBinding inflateView(LayoutInflater inflater) {
+        return ActWebviewBinding.inflate(inflater);
     }
 
     @Override

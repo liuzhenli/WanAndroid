@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewbinding.ViewBinding;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.utils.NetworkUtils;
@@ -20,7 +21,7 @@ import java.lang.reflect.Constructor;
  * @author Liuzhenli
  * @since 2019-07-07 08:38
  */
-public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2> extends BaseActivity<T1> implements OnLoadMoreListener, OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
+public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2, VB extends ViewBinding> extends BaseActivity<T1, VB> implements OnLoadMoreListener, OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
     protected EasyRecyclerView mRecyclerView;
     protected RecyclerArrayAdapter<T2> mAdapter;
 

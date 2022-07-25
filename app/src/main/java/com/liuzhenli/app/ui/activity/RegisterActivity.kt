@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
+import android.view.LayoutInflater
 import android.widget.EditText
 import com.liuzhenli.app.R
 import com.liuzhenli.app.base.BaseActivity
@@ -13,7 +13,6 @@ import com.liuzhenli.app.databinding.ActivityRegisterBinding
 import com.liuzhenli.app.network.AppComponent
 import com.liuzhenli.app.ui.contract.RegisterContract
 import com.liuzhenli.app.ui.presenter.RegisterPresenter
-import java.lang.Exception
 
 /**
  * Description:register activity
@@ -21,8 +20,8 @@ import java.lang.Exception
  * @author  liuzhenli 2021/8/12
  * Email: 848808263@qq.com
  */
-class RegisterActivity : BaseActivity<RegisterPresenter>(), RegisterContract.View {
-    private lateinit var binding: ActivityRegisterBinding
+class RegisterActivity : BaseActivity<RegisterPresenter, ActivityRegisterBinding>(),
+    RegisterContract.View {
 
     fun start(context: Context) {
         context.startActivity(Intent(context, RegisterActivity::class.java));
@@ -69,8 +68,7 @@ class RegisterActivity : BaseActivity<RegisterPresenter>(), RegisterContract.Vie
     override fun complete() {
     }
 
-    override fun bindContentView(): View {
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        return binding.root
+    override fun inflateView(inflater: LayoutInflater?): ActivityRegisterBinding {
+        return ActivityRegisterBinding.inflate(inflater!!)
     }
 }

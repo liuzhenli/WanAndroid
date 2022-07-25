@@ -1,10 +1,7 @@
 package com.liuzhenli.app.ui.fragment;
 
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseRVFragment;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
@@ -21,15 +18,14 @@ import com.liuzhenli.app.utils.DataDiffUtil;
  * @author Liuzhenli 848808263@qq.com
  * @since on 2020/6/7 4:24 PM
  */
-public class UserArticleListFragment extends BaseRVFragment<UserArticleListPresenter, ArticleBean> implements UserArticleListContract.View {
+public class UserArticleListFragment extends BaseRVFragment<UserArticleListPresenter, ArticleBean, FragmentUserarticlelistBinding> implements UserArticleListContract.View {
     public static String EXTRA_NAME = "user_name";
     private String mUserName;
-    private FragmentUserarticlelistBinding binding;
+
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentUserarticlelistBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentUserarticlelistBinding inflateView(LayoutInflater inflater) {
+        return FragmentUserarticlelistBinding.inflate(inflater);
     }
 
     @Override

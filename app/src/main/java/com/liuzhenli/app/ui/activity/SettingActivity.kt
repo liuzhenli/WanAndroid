@@ -2,7 +2,7 @@ package com.liuzhenli.app.ui.activity
 
 import android.content.Context
 import android.content.Intent
-import android.view.View
+import android.view.LayoutInflater
 import com.liuzhenli.app.R
 import com.liuzhenli.app.base.BaseActivity
 import com.liuzhenli.app.databinding.ActSettingBinding
@@ -21,9 +21,7 @@ import org.greenrobot.eventbus.EventBus
  * @author liuzhenli 2021/2/25
  * Email: 848808263@qq.com
  */
-class SettingActivity : BaseActivity<SettingPresenter?>(), SettingContract.View {
-
-    private var binding: ActSettingBinding? = null
+class SettingActivity : BaseActivity<SettingPresenter?, ActSettingBinding>(), SettingContract.View {
 
     override fun getContextViewId(): Int {
         return R.layout.act_setting
@@ -54,8 +52,7 @@ class SettingActivity : BaseActivity<SettingPresenter?>(), SettingContract.View 
         }
     }
 
-    override fun bindContentView(): View {
-        binding = ActSettingBinding.inflate(layoutInflater)
-        return binding!!.root
+    override fun inflateView(inflater: LayoutInflater?): ActSettingBinding {
+        return ActSettingBinding.inflate(inflater!!)
     }
 }

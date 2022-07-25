@@ -5,13 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
+import androidx.viewbinding.ViewBinding;
 
 import com.liuzhenli.app.AppApplication;
 import com.liuzhenli.app.R;
@@ -32,7 +32,7 @@ import javax.inject.Inject;
  * @author Liuzhenli
  * @since 2019-07-06 17:18
  */
-public abstract class BaseFragment<T1 extends BaseContract.BasePresenter> extends RxFragment {
+public abstract class BaseFragment<T1 extends BaseContract.BasePresenter, VB extends ViewBinding> extends RxFragment {
 
     protected View parentView;
     protected FragmentActivity activity;
@@ -46,19 +46,19 @@ public abstract class BaseFragment<T1 extends BaseContract.BasePresenter> extend
 
     @Inject
     protected T1 mPresenter;
+    protected VB binding;
 
-    public abstract View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent);
+    public abstract VB inflateView(LayoutInflater inflater);
 
     protected abstract void setupActivityComponent(AppComponent appComponent);
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        parentView = bindContentView(getLayoutInflater(), container, false);
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-    @Override
     public View onCreateView() {
+        if (binding == null) {
+            binding = inflateView(getLayoutInflater());
+            parentView = binding.getRoot();
+        }
+
         activity = getSupportActivity();
         mContext = activity;
         TAG = activity.getClass().getName();

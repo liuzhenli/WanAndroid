@@ -15,11 +15,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
 import com.liuzhenli.app.ui.fragment.ArticleContainerFragment;
-import com.liuzhenli.app.ui.fragment.HomeFragment;
 import com.liuzhenli.app.ui.fragment.MeFragment;
 import com.liuzhenli.app.ui.fragment.NavigationFragment;
 import com.liuzhenli.app.ui.fragment.ProjectTreeFragment;
-import com.liuzhenli.app.ui.fragment.TestFragment;
 
 import java.util.ArrayList;
 import java.util.List;

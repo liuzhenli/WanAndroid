@@ -1,9 +1,10 @@
 package com.liuzhenli.app.ui.activity;
 
-import android.view.View;
+import android.view.LayoutInflater;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseActivity;
+import com.liuzhenli.app.base.BaseContract;
 import com.liuzhenli.app.databinding.ActivityMainBinding;
 import com.liuzhenli.app.network.AppComponent;
 
@@ -11,15 +12,12 @@ import com.liuzhenli.app.network.AppComponent;
 /**
  * @author liuzhenli
  */
-public class MainActivity extends BaseActivity {
-
-    private ActivityMainBinding binding;
+public class MainActivity extends BaseActivity<BaseContract.BasePresenter, ActivityMainBinding> {
 
 
     @Override
-    protected View bindContentView() {
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
+    protected ActivityMainBinding inflateView(LayoutInflater inflater) {
+        return ActivityMainBinding.inflate(inflater);
     }
 
     @Override

@@ -28,11 +28,10 @@ import java.util.List;
  * @author Liuzhenli 848808263@qq.com
  * @since on 2020/6/2 9:01 PM
  */
-public class NavigationFragment extends BaseFragment<NavigationPresenter> implements NavigationContract.View {
+public class NavigationFragment extends BaseFragment<NavigationPresenter, FragmentNavigationBinding> implements NavigationContract.View {
 
 
     private NavigationAdapter leftAdapter;
-    private FragmentNavigationBinding binding;
 
     public static NavigationFragment getInstance() {
         NavigationFragment instance = new NavigationFragment();
@@ -40,9 +39,8 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     }
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentNavigationBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentNavigationBinding inflateView(LayoutInflater inflater) {
+        return FragmentNavigationBinding.inflate(inflater);
     }
 
     @Override

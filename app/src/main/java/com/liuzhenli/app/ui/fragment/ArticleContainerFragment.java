@@ -2,11 +2,10 @@ package com.liuzhenli.app.ui.fragment;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -37,27 +36,24 @@ import java.util.List;
  * @author Liuzhenli 848808263@qq.com
  * @since on 2020/5/26 7:27 AM
  */
-public class ArticleContainerFragment extends BaseFragment<ArticleContainerPresenter> implements ArticleContainerContract.View {
+public class ArticleContainerFragment extends BaseFragment<ArticleContainerPresenter, FragmentArticleContainerBinding> implements ArticleContainerContract.View {
 
     private FragmentPagerAdapter fragmentPagerAdapter;
     private CommonNavigatorAdapter mCommonNavigationAdapter;
     /***子Fragment容器**/
-    private List<BaseFragment> mFragmentList = new ArrayList<>();
+    private final List<BaseFragment> mFragmentList = new ArrayList<>();
     /**
      * 页面标题
      */
-    private List<String> mTitleList = new ArrayList<>();
-    private FragmentArticleContainerBinding binding;
+    private final List<String> mTitleList = new ArrayList<>();
 
     public static ArticleContainerFragment getInstance() {
-        ArticleContainerFragment instance = new ArticleContainerFragment();
-        return instance;
+        return new ArticleContainerFragment();
     }
 
     @Override
-    public View bindContentView(LayoutInflater inflater, ViewGroup container, boolean attachParent) {
-        binding = FragmentArticleContainerBinding.inflate(inflater, container, attachParent);
-        return binding.getRoot();
+    public FragmentArticleContainerBinding inflateView(LayoutInflater inflater) {
+        return FragmentArticleContainerBinding.inflate(inflater);
     }
 
     @Override
@@ -73,6 +69,7 @@ public class ArticleContainerFragment extends BaseFragment<ArticleContainerPrese
     @Override
     public void configViews() {
         fragmentPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager()) {
+            @NonNull
             @Override
             public Fragment getItem(int position) {
                 return mFragmentList.get(position);
@@ -101,7 +98,7 @@ public class ArticleContainerFragment extends BaseFragment<ArticleContainerPrese
         mCommonNavigationAdapter = new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
-                return mFragmentList == null ? 0 : mFragmentList.size();
+                return mFragmentList.size();
             }
 
             @Override

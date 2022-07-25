@@ -1,16 +1,17 @@
 package com.liuzhenli.app.ui.activity;
 
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
+import android.view.LayoutInflater;
+
+import androidx.fragment.app.Fragment;
 
 import com.liuzhenli.app.R;
+import com.liuzhenli.app.base.BaseContract;
 import com.liuzhenli.app.base.BaseTabActivity;
 import com.liuzhenli.app.databinding.ActivityTabBinding;
 import com.liuzhenli.app.network.AppComponent;
-import com.liuzhenli.app.ui.fragment.TestFragment;
+import com.liuzhenli.app.ui.fragment.MeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +19,16 @@ import java.util.List;
 /**
  * @author liuzhenli
  */
-public class TabActivity extends BaseTabActivity {
+public class TabActivity extends BaseTabActivity<BaseContract.BasePresenter, ActivityTabBinding> {
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, TabActivity.class));
     }
 
+
     @Override
-    protected View bindContentView() {
-        ActivityTabBinding binding = ActivityTabBinding.inflate(getLayoutInflater());
-        return binding.getRoot();
+    protected ActivityTabBinding inflateView(LayoutInflater inflater) {
+        return ActivityTabBinding.inflate(inflater);
     }
 
     @Override
@@ -53,10 +54,10 @@ public class TabActivity extends BaseTabActivity {
     @Override
     protected List<Fragment> createTabFragments() {
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new TestFragment());
-        fragments.add(new TestFragment());
-        fragments.add(new TestFragment());
-        fragments.add(new TestFragment());
+        fragments.add(new MeFragment());
+        fragments.add(new MeFragment());
+        fragments.add(new MeFragment());
+        fragments.add(new MeFragment());
         return fragments;
     }
 

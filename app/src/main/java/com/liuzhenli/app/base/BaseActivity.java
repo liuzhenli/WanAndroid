@@ -3,11 +3,12 @@ package com.liuzhenli.app.base;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
+import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewbinding.ViewBinding;
 
 import com.liuzhenli.app.AppApplication;
 import com.liuzhenli.app.R;
@@ -28,49 +29,55 @@ import javax.inject.Inject;
  * @author Liuzhenli
  * @since 2019-07-06 17:18
  */
-public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extends RxAppCompatActivity {
+public abstract class BaseActivity<T1 extends BaseContract.BasePresenter, VB extends ViewBinding> extends RxAppCompatActivity {
     protected Context mContext;
     public TextView mTvTitle, mTvRight;
     public Toolbar mToolBar;
     @Inject
     public T1 mPresenter;
     protected boolean isActivityStopped = false;
+    protected VB binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(bindContentView());
-        mContext = this;
-        //初始话EventBus框架
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
-        setupActivityComponent(AppApplication.getInstance().getAppComponent());
-        mToolBar = findViewById(R.id.toolbar);
-        if (mToolBar != null) {
-            mTvTitle = findViewById(R.id.tv_toolbar_title);
-            mTvRight = findViewById(R.id.tv_toolbar_right);
-            mToolBar.setNavigationOnClickListener(v -> onBackPressed());
-            initToolBar();
-        }
-        if (mPresenter != null) {
-            //noinspection unchecked
-            mPresenter.attachView(this);
-        }
-        initData();
-        configViews();
-        if (savedInstanceState != null) {
-            restoreState(savedInstanceState);
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            QMUIStatusBarHelper.translucent(this);
+        binding = inflateView(getLayoutInflater());
+        if (binding != null) {
+            setContentView(binding.getRoot());
+            mContext = this;
+            //初始话EventBus框架
+            if (!EventBus.getDefault().isRegistered(this)) {
+                EventBus.getDefault().register(this);
+            }
+            setupActivityComponent(AppApplication.getInstance().getAppComponent());
+            mToolBar = findViewById(R.id.toolbar);
+            if (mToolBar != null) {
+                mTvTitle = findViewById(R.id.tv_toolbar_title);
+                mTvRight = findViewById(R.id.tv_toolbar_right);
+                mToolBar.setNavigationOnClickListener(v -> onBackPressed());
+                initToolBar();
+            }
+            if (mPresenter != null) {
+                //noinspection unchecked
+                mPresenter.attachView(this);
+            }
+            initData();
+            configViews();
+            if (savedInstanceState != null) {
+                restoreState(savedInstanceState);
+            }
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                QMUIStatusBarHelper.translucent(this);
+            }
+
+            //设置状态栏黑色字体与图标
+            QMUIStatusBarHelper.setStatusBarLightMode(this);
         }
 
-        //设置状态栏黑色字体与图标
-        QMUIStatusBarHelper.setStatusBarLightMode(this);
 
     }
-    protected abstract View bindContentView();
+
+    protected abstract VB inflateView(LayoutInflater inflater);
 
     /**
      * 根部局
