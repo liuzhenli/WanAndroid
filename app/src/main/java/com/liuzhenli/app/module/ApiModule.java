@@ -52,7 +52,7 @@ public class ApiModule {
             ;
 
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
 
         return builder.build();

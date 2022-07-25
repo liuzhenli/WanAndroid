@@ -9,8 +9,6 @@ import com.liuzhenli.app.utils.RxUtil;
 
 import javax.inject.Inject;
 
-import io.reactivex.observers.DisposableObserver;
-
 /**
  * describe: 微信公众号列表
  *
@@ -28,13 +26,11 @@ public class ArticlePresenter extends RxPresenter<ArticleContract.View> implemen
 
     @Override
     public void getArticleList(String id, int page) {
-        DisposableObserver subscribe = RxUtil.subscribe(mApi.getArticleChaptersList(id,page), new SampleProgressObserver<ArticleListBean>() {
+        addSubscribe(RxUtil.subscribe(mApi.getArticleChaptersList(id, page), new SampleProgressObserver<ArticleListBean>() {
             @Override
             public void onNext(ArticleListBean articleListBean) {
                 mView.showArticleList(articleListBean);
-
             }
-        });
-        addSubscribe(subscribe);
+        }));
     }
 }

@@ -38,9 +38,9 @@ public class CustomGsonConverterFactory extends Converter.Factory {
             //注册数组的处理器
             gsonBulder.registerTypeAdapterFactory(new CollectionTypeAdapterFactory(new ConstructorConstructor(val)));
         } catch (NoSuchFieldException e) {
-            Logger.e(e);
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return create(gsonBulder.create());
     }

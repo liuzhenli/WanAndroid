@@ -116,13 +116,13 @@ public class FileUtils {
 
             return list;
         } catch (Throwable e) {
-            Logger.e((Exception) e);
+            e.printStackTrace();
         } finally {
             assert br != null;
             try {
                 br.close();
             } catch (IOException e) {
-                Logger.e(e);
+                e.printStackTrace();
             }
         }
         return null;
@@ -297,7 +297,7 @@ public class FileUtils {
                 file.mkdir();
             }
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return dirPath;
     }
@@ -318,7 +318,7 @@ public class FileUtils {
                 file.createNewFile();
             }
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return "";
     }
@@ -361,7 +361,7 @@ public class FileUtils {
             fout.write(bytes);
             fout.close();
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
     }
 
@@ -372,7 +372,7 @@ public class FileUtils {
             out.write(fileContent);
             out.close();
         } catch (IOException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
     }
 
@@ -414,7 +414,7 @@ public class FileUtils {
         try {
             is = am.open(fileName);
         } catch (IOException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return is;
     }
@@ -442,13 +442,13 @@ public class FileUtils {
             }
             return s.toString();
         } catch (IOException e) {
-            Logger.e(e);
+            e.printStackTrace();
             return null;
         } finally {
             try {
                 br.close();
             } catch (IOException e) {
-                Logger.e(e);
+                e.printStackTrace();
             }
         }
     }
@@ -469,13 +469,13 @@ public class FileUtils {
             FileChannel out = fo.getChannel();//得到对应的文件通道
             in.transferTo(0, in.size(), out);//连接两个通道，并且从in通道读取，然后写入out通道
         } catch (IOException e) {
-            Logger.e(e);
+            e.printStackTrace();
         } finally {
             try {
                 if (fo != null) fo.close();
                 if (fi != null) fi.close();
             } catch (IOException e) {
-                Logger.e(e);
+                e.printStackTrace();
             }
         }
     }
@@ -539,7 +539,7 @@ public class FileUtils {
                 return file.delete();
             }
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return false;
     }
@@ -589,7 +589,7 @@ public class FileUtils {
             bufferedReader.close();
             return sb.toString();
         } catch (IOException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return null;
     }
@@ -604,7 +604,7 @@ public class FileUtils {
                 Result += line;
             return Result;
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
 
         return null;
@@ -625,7 +625,7 @@ public class FileUtils {
             is.close();
             return new JSONObject(sb.toString());
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return null;
     }

@@ -115,7 +115,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         Logcat.collectDeviceInfo(mContext,infos);
         Log.i(TAG, "收集设备信息完成"+infos.size());
         //保存日志文件   
-        Logger.e((Exception) ex);
+        ex.printStackTrace();
         Log.i(TAG, "打印日志");
         //2013-06-27
         String saveCrashInfo2File = Logcat.saveCrashInfo2File(mContext,ex,infos);

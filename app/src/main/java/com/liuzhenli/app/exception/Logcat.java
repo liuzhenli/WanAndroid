@@ -296,13 +296,13 @@ public class Logcat {
 			return maps;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
-			Logger.e(e);
+			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			Logger.e(e);
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			Logger.e(e);
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -361,12 +361,12 @@ public class Logcat {
 			}
 		} catch (IOException ex) {
 			// 赋予默认值
-			Logger.e(ex);
+			ex.printStackTrace();
 		}finally {
 			try {
 				input.close();
 			} catch (IOException e) {
-				Logger.e(e);
+				e.printStackTrace();
 			}
 		}
 		return macSerial;

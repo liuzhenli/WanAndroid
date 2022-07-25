@@ -36,7 +36,7 @@ public class GsonUtils {
                 }
                 return reader.nextString();
             } catch (Exception e) {
-                Logger.e(e);
+                e.printStackTrace();
             }
             return "";
         }
@@ -49,7 +49,7 @@ public class GsonUtils {
                 }
                 writer.value(value);
             } catch (Exception e) {
-                Logger.e(e);
+                e.printStackTrace();
             }
         }
     };
@@ -93,9 +93,9 @@ public class GsonUtils {
             //注册数组的处理器
             gsonBulder.registerTypeAdapterFactory(new CollectionTypeAdapterFactory(new ConstructorConstructor(val)));
         } catch (NoSuchFieldException e) {
-            Logger.e(e);
+            e.printStackTrace();
         } catch (IllegalAccessException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
 
         gson = gsonBulder.create();

@@ -524,7 +524,7 @@ public class ZLSwipeRefreshLayout extends FrameLayout {
 
             super.onLayout(changed, left, top, right, bottom);
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         final int width = getMeasuredWidth();
         final int height = getMeasuredHeight();
@@ -546,7 +546,7 @@ public class ZLSwipeRefreshLayout extends FrameLayout {
 
             child.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         int circleWidth = mCircleView.getMeasuredWidth();
         int circleHeight = mCircleView.getMeasuredHeight();
@@ -555,7 +555,7 @@ public class ZLSwipeRefreshLayout extends FrameLayout {
             mCircleView.layout((width / 2 - circleWidth / 2), mCurrentTargetOffsetTop,
                     (width / 2 + circleWidth / 2), mCurrentTargetOffsetTop + circleHeight);
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
     }
 

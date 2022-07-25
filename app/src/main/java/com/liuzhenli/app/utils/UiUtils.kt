@@ -6,7 +6,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.google.android.material.tabs.TabLayout
-import com.orhanobut.logger.Logger
 
 
 object UiUtils {
@@ -48,9 +47,9 @@ object UiUtils {
                 }
 
             } catch (e: NoSuchFieldException) {
-                Logger.e(e)
+                e.printStackTrace()
             } catch (e: IllegalAccessException) {
-                Logger.e(e)
+                e.printStackTrace()
             }
         }
     }

@@ -212,7 +212,7 @@ public class LogUtils {
             bufWriter.close();
             filerWriter.close();
         } catch (IOException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
     }
 

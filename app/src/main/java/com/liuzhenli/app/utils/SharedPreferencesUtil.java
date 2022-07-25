@@ -150,7 +150,7 @@ public class SharedPreferencesUtil {
             editor.putString(key, objectVal);
             editor.commit();
         } catch (IOException e) {
-            Logger.e(e);
+            e.printStackTrace();
         } finally {
             try {
                 if (baos != null) {
@@ -160,7 +160,7 @@ public class SharedPreferencesUtil {
                     out.close();
                 }
             } catch (IOException e) {
-                Logger.e(e);
+                e.printStackTrace();
             }
         }
     }
@@ -176,7 +176,7 @@ public class SharedPreferencesUtil {
                 T t = (T) ois.readObject();
                 return t;
             } catch (IOException | ClassNotFoundException e) {
-                Logger.e(e);
+                e.printStackTrace();
             } finally {
                 try {
                     if (bais != null) {
@@ -186,7 +186,7 @@ public class SharedPreferencesUtil {
                         ois.close();
                     }
                 } catch (IOException e) {
-                    Logger.e(e);
+                    e.printStackTrace();
                 }
             }
         }
@@ -232,7 +232,7 @@ public class SharedPreferencesUtil {
             try {
                 str[i] = Integer.parseInt(strings[i]);
             } catch (Exception e) {
-                Logger.e(e);
+                e.printStackTrace();
                 return str;
             }
         }

@@ -113,7 +113,7 @@ public class AppUtils {
             PackageInfo info = manager.getPackageInfo(ctx.getPackageName(), 0);
             currentVersionCode = info.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return currentVersionCode;
     }
@@ -126,7 +126,7 @@ public class AppUtils {
             // 版本名
             appVersionName = info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         return appVersionName;
     }
@@ -138,14 +138,14 @@ public class AppUtils {
             appInfo = context.getPackageManager()
                     .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
         } catch (PackageManager.NameNotFoundException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
 
         String meituan_channel = "";
         try {
             meituan_channel = WalleChannelReader.getChannel(context);
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         String UMENG_CHANNEL = appInfo.metaData.getString("UMENG_CHANNEL");
         if (TextUtils.isEmpty(meituan_channel)) {
@@ -161,7 +161,7 @@ public class AppUtils {
             appInfo = context.getPackageManager()
                     .getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
         } catch (PackageManager.NameNotFoundException e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
 
         int meituan_channel_code = 0;
@@ -172,7 +172,7 @@ public class AppUtils {
                 meituan_channel_code = Integer.parseInt(WalleChannelReader.get(context, "CHNL"));
             }
         } catch (Exception e) {
-            Logger.e(e);
+            e.printStackTrace();
         }
         if (meituan_channel_code == 0) {
             return UMENG_CHANNEL_CODE;
