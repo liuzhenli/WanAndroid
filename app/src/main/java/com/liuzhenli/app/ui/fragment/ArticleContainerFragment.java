@@ -87,7 +87,7 @@ public class ArticleContainerFragment extends BaseFragment<ArticleContainerPrese
             }
         };
 
-        binding.tabVp.setOffscreenPageLimit(10);
+        binding.tabVp.setOffscreenPageLimit(3);
         binding.tabVp.setAdapter(fragmentPagerAdapter);
 
 
@@ -163,6 +163,7 @@ public class ArticleContainerFragment extends BaseFragment<ArticleContainerPrese
         }
         mCommonNavigationAdapter.notifyDataSetChanged();
         fragmentPagerAdapter.notifyDataSetChanged();
+        binding.tabVp.setOffscreenPageLimit(mFragmentList.size());
     }
 }
 

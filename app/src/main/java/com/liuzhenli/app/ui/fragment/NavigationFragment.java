@@ -1,8 +1,6 @@
 package com.liuzhenli.app.ui.fragment;
 
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +10,7 @@ import com.liuzhenli.app.base.BaseFragment;
 import com.liuzhenli.app.bean.NavigationData;
 import com.liuzhenli.app.databinding.FragmentNavigationBinding;
 import com.liuzhenli.app.network.AppComponent;
+import com.liuzhenli.app.ui.activity.HomeActivity;
 import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.ui.adapter.NavigationAdapter;
 import com.liuzhenli.app.ui.contract.NavigationContract;
@@ -64,7 +63,9 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter, Fragme
                 changeData(position);
             }
         });
-        showDialog();
+        if (HomeActivity.mCurrentPosition == 2) {
+            showDialog();
+        }
     }
 
     @Override

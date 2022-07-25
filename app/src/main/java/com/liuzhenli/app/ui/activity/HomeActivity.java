@@ -20,9 +20,8 @@ import com.qmuiteam.qmui.widget.popup.QMUIPopup;
  * @author Liuzhenli on 2020-03-12 11:37
  */
 public class HomeActivity extends BaseActivity<BaseContract.BasePresenter, ActivityHomeBinding> {
-    private int mCurrentPosition;
+    public static int mCurrentPosition = 0;
     private QMUIPopup mGlobalAction;
-
 
     @Override
     protected ActivityHomeBinding inflateView(LayoutInflater inflater) {

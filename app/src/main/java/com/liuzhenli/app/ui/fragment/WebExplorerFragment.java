@@ -31,7 +31,6 @@ import android.webkit.DownloadListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.ZoomButtonsController;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseContract;
@@ -197,7 +196,6 @@ public class WebExplorerFragment extends BaseFragment<BaseContract.BasePresenter
         mWebView.setWebChromeClient(getWebViewChromeClient());
         mWebView.setWebViewClient(getWebViewClient());
         mWebView.requestFocus(View.FOCUS_DOWN);
-        setZoomControlGone(mWebView);
         configWebView(binding.webviewContainer, mWebView);
         mWebView.loadUrl(mUrl);
     }
@@ -245,28 +243,6 @@ public class WebExplorerFragment extends BaseFragment<BaseContract.BasePresenter
         super.onDestroy();
         binding.webviewContainer.destroy();
         mWebView = null;
-    }
-
-    public static void setZoomControlGone(WebView webView) {
-        webView.getSettings().setDisplayZoomControls(false);
-        @SuppressWarnings("rawtypes")
-        Class classType;
-        Field field;
-        try {
-            classType = WebView.class;
-            field = classType.getDeclaredField("mZoomButtonsController");
-            field.setAccessible(true);
-            ZoomButtonsController zoomButtonsController = new ZoomButtonsController(
-                    webView);
-            zoomButtonsController.getZoomControls().setVisibility(View.GONE);
-            try {
-                field.set(webView, zoomButtonsController);
-            } catch (IllegalArgumentException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        } catch (SecurityException | NoSuchFieldException e) {
-            e.printStackTrace();
-        }
     }
 
     public static class ExplorerWebViewChromeClient extends WebChromeClient {
