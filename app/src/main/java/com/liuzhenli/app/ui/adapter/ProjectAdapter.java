@@ -3,17 +3,14 @@ package com.liuzhenli.app.ui.adapter;
 import android.content.Context;
 import android.text.Html;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.bean.ArticleBean;
+import com.liuzhenli.app.databinding.ItemPorjectBinding;
 import com.liuzhenli.app.utils.image.ImageUtil;
 import com.liuzhenli.app.view.recyclerview.adapter.BaseViewHolder;
 import com.liuzhenli.app.view.recyclerview.adapter.RecyclerArrayAdapter;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * describe:
@@ -33,27 +30,22 @@ public class ProjectAdapter extends RecyclerArrayAdapter<ArticleBean> {
     }
 
     public class ProjectViewHolder extends BaseViewHolder<ArticleBean> {
-        @BindView(R.id.iv_project_cover)
-        ImageView mIvProjectCover;
-        @BindView(R.id.tv_project_name)
-        TextView mTvProjectName;
-        @BindView(R.id.tv_project_des)
-        TextView mTvProjectDes;
-        @BindView(R.id.tv_project_share_time)
-        TextView mTvProjectShareTime;
+
+
+        ItemPorjectBinding binding;
 
         public ProjectViewHolder(ViewGroup parent, int res) {
             super(parent, res);
-            ButterKnife.bind(this, itemView);
+            binding = ItemPorjectBinding.bind(itemView);
         }
 
         @Override
         public void setData(ArticleBean item) {
             super.setData(item);
-            ImageUtil.setImage(mContext, item.envelopePic, mIvProjectCover);
-            mTvProjectName.setText(Html.fromHtml(item.title));
-            mTvProjectDes.setText(Html.fromHtml(item.desc));
-            mTvProjectShareTime.setText(item.niceShareDate);
+            ImageUtil.setImage(mContext, item.envelopePic, binding.ivProjectCover);
+            binding.tvProjectName.setText(Html.fromHtml(item.title));
+            binding.tvProjectDes.setText(Html.fromHtml(item.desc));
+            binding.tvProjectShareTime.setText(item.niceShareDate);
         }
     }
 }

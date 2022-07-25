@@ -11,9 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.liuzhenli.app.AppApplication;
 import com.liuzhenli.app.R;
+import com.liuzhenli.app.base.rxlife.RxAppCompatActivity;
 import com.liuzhenli.app.events.DoSomethingEvent;
 import com.liuzhenli.app.network.AppComponent;
-import com.liuzhenli.app.base.rxlife.RxAppCompatActivity;
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 
 import org.greenrobot.eventbus.EventBus;
@@ -21,8 +21,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
-
-import butterknife.ButterKnife;
 
 /**
  * Activity 基类
@@ -43,8 +41,6 @@ public abstract class BaseActivity<T1 extends BaseContract.BasePresenter> extend
         super.onCreate(savedInstanceState);
         setContentView(bindContentView());
         mContext = this;
-        //使用ButterKnife框架
-        ButterKnife.bind(this);
         //初始话EventBus框架
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);

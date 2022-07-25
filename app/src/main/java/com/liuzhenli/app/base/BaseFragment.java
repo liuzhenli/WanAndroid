@@ -2,38 +2,31 @@ package com.liuzhenli.app.base;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import com.liuzhenli.app.AppApplication;
 import com.liuzhenli.app.R;
+import com.liuzhenli.app.base.rxlife.RxFragment;
 import com.liuzhenli.app.events.DoSomethingEvent;
 import com.liuzhenli.app.network.AppComponent;
-import com.liuzhenli.app.base.rxlife.RxFragment;
-import com.liuzhenli.app.ui.activity.HomeActivity;
 import com.liuzhenli.app.utils.ToastUtil;
 import com.liuzhenli.app.view.loading.CustomProgressDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 
 /**
  * @author Liuzhenli
@@ -81,11 +74,10 @@ public abstract class BaseFragment<T1 extends BaseContract.BasePresenter> extend
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
 
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
         mCommonToolbar = view.findViewById(R.id.toolbar);
 
         setupActivityComponent(AppApplication.getInstance().getAppComponent());
@@ -116,7 +108,7 @@ public abstract class BaseFragment<T1 extends BaseContract.BasePresenter> extend
     public abstract void configViews();
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.activity = (FragmentActivity) activity;
     }

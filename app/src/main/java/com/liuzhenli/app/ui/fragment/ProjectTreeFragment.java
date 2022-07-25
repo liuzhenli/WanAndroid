@@ -10,7 +10,6 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.base.BaseFragment;
@@ -21,7 +20,6 @@ import com.liuzhenli.app.ui.contract.ProjectTreeContract;
 import com.liuzhenli.app.ui.presenter.ProjectTreePresenter;
 import com.liuzhenli.app.view.ScaleTransitionPagerTitleView;
 
-import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.UIUtil;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -33,7 +31,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.Li
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 
 /**
  * describe:项目分类

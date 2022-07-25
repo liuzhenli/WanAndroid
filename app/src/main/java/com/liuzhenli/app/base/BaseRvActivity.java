@@ -15,14 +15,12 @@ import com.liuzhenli.app.view.recyclerview.swipe.OnRefreshListener;
 
 import java.lang.reflect.Constructor;
 
-import butterknife.BindView;
 
 /**
  * @author Liuzhenli
  * @since 2019-07-07 08:38
  */
-public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2> extends BaseActivity<T1> implements OnLoadMoreListener, OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener{
-    @BindView(R.id.recyclerView)
+public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2> extends BaseActivity<T1> implements OnLoadMoreListener, OnRefreshListener, RecyclerArrayAdapter.OnItemClickListener {
     protected EasyRecyclerView mRecyclerView;
     protected RecyclerArrayAdapter<T2> mAdapter;
 
@@ -37,7 +35,7 @@ public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2> 
 
 
     protected void initAdapter(boolean refreshable, boolean loadMoreAble) {
-        initAdapter(refreshable,loadMoreAble,null);
+        initAdapter(refreshable, loadMoreAble, null);
     }
 
     private void initAdapter(boolean refreshable, boolean loadmoreable, View view) {
@@ -48,7 +46,7 @@ public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2> 
                 mAdapter.setMore(R.layout.common_more_view, this);
                 mAdapter.setNoMore(R.layout.common_nomore_view);
             }
-            if (view!=null) {
+            if (view != null) {
                 mAdapter.setZeroView(view);
             }
             if (refreshable && mRecyclerView != null) {
@@ -63,14 +61,14 @@ public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2> 
     }
 
 
-
     protected void initAdapter(Class<? extends RecyclerArrayAdapter<T2>> clazz, boolean refreshable, boolean loadMoreAble) {
         mAdapter = (RecyclerArrayAdapter) createInstance(clazz);
         initAdapter(refreshable, loadMoreAble);
     }
-    protected void initAdapter(Class<? extends RecyclerArrayAdapter<T2>> clazz, boolean refreshable, boolean loadMoreAble,View zeroView) {
+
+    protected void initAdapter(Class<? extends RecyclerArrayAdapter<T2>> clazz, boolean refreshable, boolean loadMoreAble, View zeroView) {
         mAdapter = (RecyclerArrayAdapter) createInstance(clazz);
-        initAdapter(refreshable, loadMoreAble,zeroView);
+        initAdapter(refreshable, loadMoreAble, zeroView);
     }
 
     private Object createInstance(Class<?> cls) {
@@ -100,7 +98,7 @@ public abstract class BaseRvActivity<T1 extends BaseContract.BasePresenter, T2> 
         }
     }
 
-    protected void loaddingError(){
+    protected void loaddingError() {
         if (mAdapter.getCount() == 0) {
             mAdapter.clear();
         }

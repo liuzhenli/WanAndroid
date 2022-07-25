@@ -13,17 +13,13 @@ import com.liuzhenli.app.utils.UiUtils;
 
 import java.util.List;
 
-import butterknife.BindView;
-
 /**
  * describe: base TabActivity
  *
  * @author Liuzhenli on 2019-10-18 15:44
  */
 public abstract class BaseTabActivity extends BaseActivity<BaseContract.BasePresenter> {
-    @BindView(R.id.tab_tl_indicator)
     protected TabLayout mTabLayout;
-    @BindView(R.id.tab_vp)
     protected ViewPager mVp;
     protected TabFragmentPageAdapter tabFragmentPageAdapter;
     protected List<Fragment> mFragmentList;
@@ -35,6 +31,8 @@ public abstract class BaseTabActivity extends BaseActivity<BaseContract.BasePres
 
     @Override
     protected void configViews() {
+        mTabLayout = findViewById(R.id.tab_tl_indicator);
+        mVp = findViewById(R.id.tab_vp);
         setUpTabLayout();
     }
 

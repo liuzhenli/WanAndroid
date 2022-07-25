@@ -1,23 +1,14 @@
 package com.liuzhenli.app.ui.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.bean.NavigationData;
+import com.liuzhenli.app.databinding.ItemNavigationBinding;
 import com.liuzhenli.app.view.recyclerview.adapter.BaseViewHolder;
 import com.liuzhenli.app.view.recyclerview.adapter.RecyclerArrayAdapter;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * describe:
@@ -39,22 +30,20 @@ public class NavigationAdapter extends RecyclerArrayAdapter<NavigationData.DataB
 
 
     class NavigationViewHolder extends BaseViewHolder<NavigationData.DataBean> {
-        @BindView(R.id.tv_navigation_title)
-        TextView mTvTitle;
-
+        ItemNavigationBinding binding;
         public NavigationViewHolder(ViewGroup parent, int res) {
             super(parent, res);
-            ButterKnife.bind(this, itemView);
+            binding = ItemNavigationBinding.bind(itemView);
         }
 
         @Override
         public void setData(NavigationData.DataBean item) {
             super.setData(item);
-            mTvTitle.setText(item.name);
+            binding.tvNavigationTitle.setText(item.name);
             if (item.isSelected) {
-                mTvTitle.setBackgroundResource(R.drawable.selector_bg_gray_radius);
+                binding.tvNavigationTitle.setBackgroundResource(R.drawable.selector_bg_gray_radius);
             } else {
-                mTvTitle.setBackgroundColor(mContext.getResources().getColor(R.color.qmui_config_color_transparent));
+                binding.tvNavigationTitle.setBackgroundColor(mContext.getResources().getColor(R.color.qmui_config_color_transparent));
             }
         }
     }

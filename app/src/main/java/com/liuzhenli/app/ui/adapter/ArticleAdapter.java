@@ -10,15 +10,13 @@ import android.widget.TextView;
 import com.liuzhenli.app.R;
 import com.liuzhenli.app.bean.ArticleBean;
 import com.liuzhenli.app.bean.ArticleListBean;
+import com.liuzhenli.app.databinding.ItemHomePageArticleBinding;
 import com.liuzhenli.app.ui.activity.JumpActivity;
 import com.liuzhenli.app.utils.ClickUtils;
 import com.liuzhenli.app.view.recyclerview.adapter.BaseViewHolder;
 import com.liuzhenli.app.view.recyclerview.adapter.RecyclerArrayAdapter;
 
 import java.text.MessageFormat;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * describe:
@@ -38,41 +36,32 @@ public class ArticleAdapter extends RecyclerArrayAdapter<ArticleBean> {
     }
 
     class ViewHolder extends BaseViewHolder<ArticleBean> {
-        @BindView(R.id.tv_article_title)
-        TextView mTvTitle;
-        @BindView(R.id.tv_article_author)
-        TextView mTvAuthor;
-        @BindView(R.id.iv_article_source)
-        TextView mIvArticleSource;
-        @BindView(R.id.tv_article_time)
-        TextView mViewArticleTime;
-        @BindView(R.id.tv_article_type)
-        TextView mViewArticleType;
+        ItemHomePageArticleBinding binding;
 
         public ViewHolder(ViewGroup parent, int res) {
             super(parent, res);
-            ButterKnife.bind(this, itemView);
+            binding = ItemHomePageArticleBinding.bind(itemView);
         }
 
         @Override
         public void setData(ArticleBean item) {
             super.setData(item);
             if (item.itemType == 1) {
-                mTvTitle.setText(MessageFormat.format("【顶】 {0}", Html.fromHtml(item.title)));
+                binding.tvArticleTitle.setText(MessageFormat.format("【顶】 {0}", Html.fromHtml(item.title)));
             } else {
-                mTvTitle.setText(Html.fromHtml(item.title));
+                binding.tvArticleTitle.setText(Html.fromHtml(item.title));
             }
             if (TextUtils.isEmpty(item.author)) {
-                mIvArticleSource.setText("分享人:");
-                mTvAuthor.setText(item.shareUser);
-                ClickUtils.click(mTvAuthor, o -> mContext.startActivity(JumpActivity.createUserArticleListIntent(mContext, item.shareUser, item.title)));
+                binding.ivArticleSource.setText("分享人:");
+                binding.tvArticleAuthor.setText(item.shareUser);
+                ClickUtils.click(binding.tvArticleAuthor, o -> mContext.startActivity(JumpActivity.createUserArticleListIntent(mContext, item.shareUser, item.title)));
             } else {
-                mIvArticleSource.setText("作者:");
-                mTvAuthor.setText(item.author);
-                ClickUtils.click(mTvAuthor, o -> mContext.startActivity(JumpActivity.createUserArticleListIntent(mContext, item.author, item.title)));
+                binding.ivArticleSource.setText("作者:");
+                binding.tvArticleAuthor.setText(item.author);
+                ClickUtils.click(binding.tvArticleAuthor, o -> mContext.startActivity(JumpActivity.createUserArticleListIntent(mContext, item.author, item.title)));
             }
-            mViewArticleType.setText(String.format("分类:%s/%s", item.superChapterName, item.chapterName));
-            mViewArticleTime.setText(item.niceDate);
+            binding.tvArticleType.setText(String.format("分类:%s/%s", item.superChapterName, item.chapterName));
+            binding.tvArticleTime.setText(item.niceDate);
         }
     }
 }

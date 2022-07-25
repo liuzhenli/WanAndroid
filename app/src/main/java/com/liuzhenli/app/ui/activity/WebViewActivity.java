@@ -15,8 +15,6 @@ import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.view.webview.ZLWebChromeClient;
 import com.liuzhenli.app.view.webview.ZLWebViewClient;
 
-import butterknife.BindView;
-
 /**
  * describe: web view
  *

@@ -1,15 +1,12 @@
 package com.liuzhenli.app.ui.activity;
 
-import android.content.Intent;
 import android.view.View;
 
 import com.liuzhenli.app.R;
-import com.liuzhenli.app.databinding.ActivityMainBinding;
-import com.liuzhenli.app.databinding.ActivityMainContainerBinding;
-import com.liuzhenli.app.network.AppComponent;
 import com.liuzhenli.app.base.BaseActivity;
+import com.liuzhenli.app.databinding.ActivityMainBinding;
+import com.liuzhenli.app.network.AppComponent;
 
-import butterknife.OnClick;
 
 /**
  * @author liuzhenli
